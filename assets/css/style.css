@@ -1,0 +1,42 @@
+body {
+	background-image: url("https://www.hormonewizard.com/uploads/news-pictures/14663-orange-beach-blog-post-image-20170420143214.jpg");
+	background-size: 100%;
+	background-attachment: fixed;
+}
+
+.panel {
+	opacity: 0.9;
+}
+
+.jumbotron {
+/*	background: url(https://cdn.dribbble.com/users/1047147/screenshots/2909362/bullet-train-dribbble-wiggle_3.gif); 
+	background-size: 100%;
+	background-position: center;
+	opacity: 1.0;
+	height: 250px;*/
+}
+
+.jumbotron h1 {
+/*	font-family: 'Bree Serif', serif;
+	font-weight: bold;
+	font-size: 90px;
+	text-shadow: 3px 3px black;
+	color: white*/
+}
+
+.jumbotron h3 {
+/*	font-family: 'Bree Serif', serif;
+	font-size: 22px;
+	color: white;
+	text-shadow: 1px 2px black;*/
+}
+
+.panel-heading {
+	
+}
+
+.panel-title {
+	
+}
+
+
