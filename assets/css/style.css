@@ -62,10 +62,17 @@ img {
 }
 
 /*Custom stylesheet*/
+.card-action {
+	align-content: center;
+}
 .btn {
 	margin: 5px;
-	hover: 
+	padding-left: 10px;
+	padding-right: 10px;
 }
+	.btn:hover {
+		transform: rotate(5deg);
+	}
 
 #map-id {
 	height: 180px;
