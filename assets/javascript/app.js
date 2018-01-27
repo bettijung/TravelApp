@@ -16,11 +16,11 @@ const dbRef = firebase.database().ref('TravelerInputs/traveler');
 // =========================================================
 var activityVal
 //
-$("#submit").on("click", function(event) {
+$(".btn").on("click", function(event) {
 
 	event.preventDefault();
 
-	activityVal = $("#activity").val().trim()
+	activityVal = $(this).attr("id").trim()
 
 	randCity = Math.floor(Math.random() * 10) + 1
 
