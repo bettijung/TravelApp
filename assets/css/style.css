@@ -1,42 +1,70 @@
-body {
-	background-image: url("https://www.hormonewizard.com/uploads/news-pictures/14663-orange-beach-blog-post-image-20170420143214.jpg");
-	background-size: 100%;
-	background-attachment: fixed;
+/* Custom Stylesheet */
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
 }
 
-.panel {
-	opacity: 0.9;
+p {
+  line-height: 2rem;
 }
 
-.jumbotron {
-/*	background: url(https://cdn.dribbble.com/users/1047147/screenshots/2909362/bullet-train-dribbble-wiggle_3.gif); 
-	background-size: 100%;
-	background-position: center;
-	opacity: 1.0;
-	height: 250px;*/
+.button-collapse {
+  color: #26a69a;
 }
 
-.jumbotron h1 {
-/*	font-family: 'Bree Serif', serif;
-	font-weight: bold;
-	font-size: 90px;
-	text-shadow: 3px 3px black;
-	color: white*/
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+  .parallax-container .parallax {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+  .parallax-container .parallax img {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
 }
 
-.jumbotron h3 {
-/*	font-family: 'Bree Serif', serif;
-	font-size: 22px;
-	color: white;
-	text-shadow: 1px 2px black;*/
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
 }
 
-.panel-heading {
-	
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
 }
 
-.panel-title {
-	
+footer.page-footer {
+  margin: 0;
 }
 
-
+img {
+    border: 0;
+}
