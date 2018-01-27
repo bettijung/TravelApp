@@ -62,9 +62,16 @@ img {
 }
 
 /*Custom stylesheet*/
-.card-action {
-	align-content: center;
+
+.no-pad-bot h1{
+	font-size: 80px;
 }
+
+.parallax img{
+	width: 100%;
+	
+}
+
 .btn {
 	margin: 5px;
 	padding-left: 10px;
