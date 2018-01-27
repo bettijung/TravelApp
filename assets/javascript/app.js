@@ -22,9 +22,14 @@ $(".btn").on("click", function(event) {
 
 	activityVal = $(this).attr("id").trim()
 
-	randCity = Math.floor(Math.random() * 10) + 1
+	randCity = Math.floor(Math.random() * 10) + 1;
 
-	console.log(activityVal)
+	console.log(activityVal);
+
+    $(activityVal+"1").attr("src", "assets/images/"+activityVal+ "1.jpeg");
+    $(activityVal+"2").attr("src", "assets/images/"+activityVal+ "2.jpeg");
+    $(activityVal+"3").attr("src", "assets/images/"+activityVal+ "3.jpeg");
+
 
 
 	$.ajax({
