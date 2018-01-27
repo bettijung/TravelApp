@@ -31,6 +31,7 @@ p {
   }
   .parallax-container .parallax img {
     position: absolute;
+    z-index: -2;
     left: 50%;
     bottom: 0;
     min-width: 100%;
@@ -62,9 +63,15 @@ img {
 }
 
 /*Custom stylesheet*/
-.card-action {
-	align-content: center;
+
+.no-pad-bot h1 {
+	font-size: 80px;
 }
+
+.parallax img {
+	width: 100%;
+}
+
 .btn {
 	margin: 5px;
 	padding-left: 10px;
