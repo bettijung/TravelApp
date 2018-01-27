@@ -26,9 +26,9 @@ $(".btn").on("click", function(event) {
 
 	console.log(activityVal);
 
-    $(activityVal+"1").attr("src", activityVal+ "1.jpeg");
-    $(activityVal+"2").attr("src", activityVal+ "2.jpeg");
-    $(activityVal+"3").attr("src", activityVal+ "3.jpeg");
+    $(activityVal+"1").attr("src", "assets/images/"+activityVal+ "1.jpeg");
+    $(activityVal+"2").attr("src", "assets/images/"+activityVal+ "2.jpeg");
+    $(activityVal+"3").attr("src", "assets/images/"+activityVal+ "3.jpeg");
 
 
 
