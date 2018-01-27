@@ -75,7 +75,12 @@ img {
 	}
 
 #map-id {
-	height: 180px;
+	height: 768px;
+  width: 1024px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 
