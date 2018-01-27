@@ -1,5 +1,4 @@
-/* Custom Stylesheet */
-
+/* Layout Stylesheet */
 nav ul a,
 nav .brand-logo {
   color: #444;
@@ -54,13 +53,6 @@ p {
   }
 }
 
-.icon-block {
-  padding: 0 15px;
-}
-.icon-block .material-icons {
-  font-size: inherit;
-}
-
 footer.page-footer {
   margin: 0;
 }
@@ -68,3 +60,21 @@ footer.page-footer {
 img {
     border: 0;
 }
+
+/*Custom stylesheet*/
+.btn {
+	margin: 5px;
+	hover: 
+}
+
+#map-id {
+	height: 180px;
+}
+
+
+
+
+
+
+
+
