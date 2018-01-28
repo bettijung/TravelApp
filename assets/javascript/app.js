@@ -38,13 +38,25 @@ function getActivity () {
         }, success: function(response){
             console.log(response);
             //process the JSON data etc
-            const actCoord = response.data.places["0"].location;
-            console.log(actCoord)
+            
+            //creates an array with all of the points of interested (poi) objects within. Use pois[i].location to get coords
+            const placesObj = response.data.places
+            var pois = []
+            for (var i = 0; i < placesObj.length; i++) {
+                
+                 pois[i] = placesObj[i]
 
-            latitude = actCoord.lat;
+            }
+
+            console.log(pois)
+
+           /* const actCoord = response.data.places["0"].location;
+            console.log(actCoord)*/
+            // placeholder for one poi coords
+            latitude = pois[0].location.lat;
             console.log(latitude);
 
-            longitude = actCoord.lng;
+            longitude = pois[0].location.lng;
             console.log(longitude);
 
             displayActivityMap();
