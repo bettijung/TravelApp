@@ -16,11 +16,8 @@ const dbRef = firebase.database().ref('TravelerInputs/traveler');
 // =========================================================
 var activityVal
 
-let geoCoordLat;
-
-let geoCoordLng;
-//
-$(".btn").on("click", function(event) {
+// $(".btn").on("click", function(event) {
+function getActivity () {
 
 	event.preventDefault();
 
@@ -34,8 +31,6 @@ $(".btn").on("click", function(event) {
     $(activityVal+"2").attr("src", "assets/images/"+activityVal+ "2.jpeg");
     $(activityVal+"3").attr("src", "assets/images/"+activityVal+ "3.jpeg");
 
-
-
 	$.ajax({
         url: 'https://api.sygictravelapi.com/1.0/en/places/list?parents=city:'+randCity+'&categories='+ activityVal +'&limit=20',
         beforeSend: function(xhr) {
@@ -46,18 +41,17 @@ $(".btn").on("click", function(event) {
             const actCoord = response.data.places["0"].location;
             console.log(actCoord)
 
-            let geoCoordLat = response.data.places["0"].location.lat;
-            console.log(geoCoordLat);
+            latitude = actCoord.lat;
+            console.log(latitude);
 
-            let geoCoordLng = response.data.places["0"].location.lng;
-            console.log(geoCoordLng);
+            longitude = actCoord.lng;
+            console.log(longitude);
+
+            displayActivityMap();
+
         }
 
-
 	})
-
-displayMap ();
-
 
 //Getting a (not ordered)cities list
 	$.ajax({
@@ -71,23 +65,29 @@ displayMap ();
 
 	})
 
-})
+}
+// })
 
+function displayActivityMap () {
 
-function displayMap() {
-
-    let mymap = L.map("map-id").setView([geoCoordLat, geoCoordLng], 13);
+    let mymap = L.map("map-id").setView([latitude, longitude], 13);
     // let mymap = L.map("map-id").setView([51.505, -0.09], 13);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicGF1bGFwZXJvdXRrYSIsImEiOiJjamN4bDg1b3MxMmNrMnlvNXI4ZjVtZ2gyIn0.8-6Dt5FcrIKpSddbhgUPOQ', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox.streets',
-    accessToken: 'pk.eyJ1IjoicGF1bGFwZXJvdXRrYSIsImEiOiJjamN4bDg1b3MxMmNrMnlvNXI4ZjVtZ2gyIn0.8-6Dt5FcrIKpSddbhgUPOQ'
-}).addTo(mymap);
-
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1IjoicGF1bGFwZXJvdXRrYSIsImEiOiJjamN4bDg1b3MxMmNrMnlvNXI4ZjVtZ2gyIn0.8-6Dt5FcrIKpSddbhgUPOQ'
+    }).addTo(mymap);
 
 }
+
+
+$(document).on("click", ".activity-btn", getActivity);
+
+
+
+
 
 
 
