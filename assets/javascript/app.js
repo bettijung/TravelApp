@@ -21,6 +21,20 @@ $(document).ready(function(){
     $('#modal1').modal();
   });
 
+$("#googSubmit").on("click", function() {
+
+email = $("#email").val().trim()
+password = $("#password").val().trim()
+
+firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});
+
+})
+
 var activityVal
 
 // $(".btn").on("click", function(event) {
