@@ -136,8 +136,9 @@ body {
 .map-card {
 	opacity: 0.9;
 	background-color: #E8E8E8;
-	margin-top: 40px;
-	margin-bottom: 40px;
+	/*margin-top: 40px;
+	margin-bottom: 40px;*/
+	width: 100%;
 }
 
 
