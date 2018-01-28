@@ -37,7 +37,6 @@ firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(e
 
 var activityVal
 
-// $(".btn").on("click", function(event) {
 function getActivity () {
 
 	event.preventDefault();
@@ -62,11 +61,11 @@ function getActivity () {
             
             //creates an array with all of the points of interested (poi) objects within. Use pois[i].location to get coords
             const placesObj = response.data.places
-            var pois = []
+            var pois = [];
+
             for (var i = 0; i < placesObj.length; i++) {
                 
-                 pois[i] = placesObj[i]
-
+                 pois[i] = placesObj[i];
             }
 
             console.log(pois)
@@ -80,7 +79,21 @@ function getActivity () {
             longitude = pois[0].location.lng;
             console.log(longitude);
 
-            displayActivityMap();
+            let markerMap = displayActivityMap();
+
+            //creates marker for each poi
+            for (var i=0; i<pois.length; i++) {
+
+                const activityIcon = L.icon({
+                    iconUrl: "assets/images/marker.png",
+                    iconSize: [38, 38],
+                    iconAnchor: [22, 94],
+                    popupAnchor: [-3, -76],
+                });
+
+                L.marker([pois[i].location.lat, pois[i].location.lng], {icon: activityIcon}).addTo(markerMap);
+            }
+
 
         }
 
@@ -99,21 +112,22 @@ function getActivity () {
 	})
 
 }
-// })
 
 function displayActivityMap () {
-
-    let mymap = L.map("map-id").setView([latitude, longitude], 13);
-    // let mymap = L.map("map-id").setView([51.505, -0.09], 13);
+    
+    let actMap = L.map("map-id").setView([latitude, longitude], 13);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicGF1bGFwZXJvdXRrYSIsImEiOiJjamN4bDg1b3MxMmNrMnlvNXI4ZjVtZ2gyIn0.8-6Dt5FcrIKpSddbhgUPOQ', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
         maxZoom: 18,
         id: 'mapbox.streets',
         accessToken: 'pk.eyJ1IjoicGF1bGFwZXJvdXRrYSIsImEiOiJjamN4bDg1b3MxMmNrMnlvNXI4ZjVtZ2gyIn0.8-6Dt5FcrIKpSddbhgUPOQ'
-    }).addTo(mymap);
+    }).addTo(actMap);
+
+    return actMap;
 
 }
+
 
 
 $(document).on("click", ".activity-btn", getActivity);
