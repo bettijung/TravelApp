@@ -14,34 +14,37 @@ firebase.initializeApp(config);
 const dbRef = firebase.database().ref('TravelerInputs/traveler');
 
 // =========================================================
-$(document).ready(function(){
-    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-    
 
+
+
+$(document).ready(function(){
+      
+    //modal trigger
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('#modal1').modal();
   });
 
 $("#googSubmit").on("click", function() {
 
-email = $("#email").val().trim()
-password = $("#password").val().trim()
+    email = $("#email").val().trim()
+    password = $("#password").val().trim()
 
-firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // ...
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+
 });
 
 })
 
-var activityVal
+
 
 function getActivity () {
 
 	event.preventDefault();
 
-	activityVal = $(this).attr("id").trim()
+	var activityVal = $(this).attr("id").trim()
 
 	randCity = Math.floor(Math.random() * 10) + 1;
 
@@ -94,10 +97,20 @@ function getActivity () {
                 L.marker([pois[i].location.lat, pois[i].location.lng], {icon: activityIcon}).addTo(markerMap);
             }
 
+            const cityName = pois["0"].name_suffix
+            const wikiURL = "https://en.wikipedia.org/w/api.php?action=query&titles="+cityName+"&prop=revisions&rvprop=content&format=json&formatversion=2"
+            $.ajax({
+            url: wikiURL,
+            method: "GET"
+            }).then(function(response) {
 
+            console.log(response)
+
+            })
         }
 
 	})
+    
 
 //Getting a (not ordered)cities list
 	$.ajax({
