@@ -15,6 +15,10 @@ const dbRef = firebase.database().ref('TravelerInputs/traveler');
 
 // =========================================================
 var activityVal
+
+let geoCoordLat;
+
+let geoCoordLng;
 //
 $(".btn").on("click", function(event) {
 
@@ -39,10 +43,20 @@ $(".btn").on("click", function(event) {
         }, success: function(response){
             console.log(response);
             //process the JSON data etc
-            const actCoord = response.data.places["0"].location
+            const actCoord = response.data.places["0"].location;
             console.log(actCoord)
+
+            let geoCoordLat = response.data.places["0"].location.lat;
+            console.log(geoCoordLat);
+
+            let geoCoordLng = response.data.places["0"].location.lng;
+            console.log(geoCoordLng);
         }
+
+
 	})
+
+displayMap ();
 
 
 //Getting a (not ordered)cities list
@@ -54,15 +68,16 @@ $(".btn").on("click", function(event) {
             console.log(data);
             //process the JSON data etc
         }
-	})
 
+	})
 
 })
 
 
 function displayMap() {
 
-    let mymap = L.map("map-id").setView([51.505, -0.09], 13);
+    let mymap = L.map("map-id").setView([geoCoordLat, geoCoordLng], 13);
+    // let mymap = L.map("map-id").setView([51.505, -0.09], 13);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicGF1bGFwZXJvdXRrYSIsImEiOiJjamN4bDg1b3MxMmNrMnlvNXI4ZjVtZ2gyIn0.8-6Dt5FcrIKpSddbhgUPOQ', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -74,6 +89,6 @@ function displayMap() {
 
 }
 
-displayMap();
+
 
 
