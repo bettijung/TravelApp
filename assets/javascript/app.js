@@ -87,7 +87,7 @@ function getActivity () {
                 const activityIcon = L.icon({
                     iconUrl: "assets/images/marker.png",
                     iconSize: [38, 38],
-                    iconAnchor: [22, 94],
+                    iconAnchor: [22, 38],
                     popupAnchor: [-3, -76],
                 });
 
@@ -127,8 +127,6 @@ function displayActivityMap () {
     return actMap;
 
 }
-
-
 
 $(document).on("click", ".activity-btn", getActivity);
 
