@@ -1,7 +1,7 @@
 /* Layout Stylesheet */
 nav ul a,
 nav .brand-logo {
-  color: #444;
+  color: #FFFFFF;
 }
 
 p {
@@ -64,8 +64,24 @@ img {
 
 /*Custom stylesheet*/
 
+.navbar-fixed {
+	background-color: transparent;
+}
+
+#logo-container {
+/*	background-color: white;
+	opacity: 0.5;*/
+	font-size: 25px;
+	text-shadow: 1px 1px 2px #303030;
+}
+
 .no-pad-bot h1 {
-	font-size: 80px;
+	font-size: 65px;
+}
+
+.no-pad-bot .container .header {
+	margin-top: 0px;
+	text-shadow: 2px 2px 3px #303030;
 }
 
 .parallax img {
@@ -78,17 +94,45 @@ img {
 	padding-right: 10px;
 }
 	.btn:hover {
-		transform: rotate(5deg);
+		transform: rotate(7deg);
 	}
 
 #map-id {
 	height: 180px;
 }
 
+body {
+	background-color: #303030;
+}
 
+.imgdiv1 {
+	height: 10px;
+}
 
+ #img1  {
+ 	height: 100%;
+ 	position: fixed;
+ 	/*opacity: 0.8;*/
+ }
 
+#index-banner {
+	padding-top: 0px;
+}
 
+.activity-container {
+	margin-top: -110px;
+}
 
+.activity-card {
+	opacity: 0.9;
+	background-color: #E8E8E8;
+}
+
+.map-card {
+	opacity: 0.9;
+	background-color: #E8E8E8;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
 
 
