@@ -19,9 +19,9 @@ var activityVal
 // $(".btn").on("click", function(event) {
 function getActivity () {
 
-	event.preventDefault();
+	// event.preventDefault();
 
-	activityVal = $(this).attr("id").trim()
+	activityVal = $(this).attr("id").trim();
 
 	randCity = Math.floor(Math.random() * 10) + 1;
 
@@ -41,10 +41,10 @@ function getActivity () {
             const actCoord = response.data.places["0"].location;
             console.log(actCoord)
 
-            latitude = actCoord.lat;
+            let latitude = actCoord.lat;
             console.log(latitude);
 
-            longitude = actCoord.lng;
+            let longitude = actCoord.lng;
             console.log(longitude);
 
             displayActivityMap();
@@ -80,7 +80,10 @@ function displayActivityMap () {
         accessToken: 'pk.eyJ1IjoicGF1bGFwZXJvdXRrYSIsImEiOiJjamN4bDg1b3MxMmNrMnlvNXI4ZjVtZ2gyIn0.8-6Dt5FcrIKpSddbhgUPOQ'
     }).addTo(mymap);
 
+    displayMarker();
+
 }
+
 
 
 $(document).on("click", ".activity-btn", getActivity);
