@@ -84,6 +84,10 @@ function getActivity () {
 
             let markerMap = displayActivityMap();
 
+            let popupContent;
+
+            let popupCity;
+
             //creates marker for each poi
             for (var i=0; i<pois.length; i++) {
 
@@ -94,28 +98,42 @@ function getActivity () {
                     popupAnchor: [-3, -76],
                 });
 
-                let popupContent = pois[i].name;
+                pois[i].id = pois[i].name;
+
+                popupContent = pois[i].name;
+
+                popupCity = pois[i].name_suffix;
 
                 console.log(popupContent);
 
-                L.marker([pois[i].location.lat, pois[i].location.lng], {icon: activityIcon}).addTo(markerMap).bindPopup(popupContent).openPopup();;
+                L.marker([pois[i].location.lat, pois[i].location.lng], {icon: activityIcon}).addTo(markerMap).bindPopup(popupContent).openPopup();
 
             }
 
+            console.log(pois[0].id);
+
+            $(".leaflet-popup-content").css("cursor", "pointer");    
+
+            $(".leaflet-popup-content").on("click", function () {
+                console.log($(this).text());
+                window.open('http://google.com/search?q='+ $(this).text() + ", " + popupCity);   
+            });
+
             const cityName = pois["0"].name_suffix
-            const wikiURL = "https://en.wikipedia.org/w/api.php?action=query&titles="+cityName+"&prop=revisions&rvprop=content&format=json&formatversion=2"
-            $.ajax({
-            url: wikiURL,
-            method: "GET"
-            }).then(function(response) {
 
-            console.log(response)
+            // const wikiURL = "https://en.wikipedia.org/w/api.php?action=query&titles="+cityName+"&prop=revisions&rvprop=content&format=json&formatversion=2"
+            // $.ajax({
+            //     url: wikiURL,
+            //     method: "GET"
+            // }).then(function(response) {
 
-            })
+            // console.log(response)
+
+            // })    
+                   
         }
 
 	})
-    
 
 //Getting a (not ordered)cities list
 	$.ajax({
@@ -146,7 +164,11 @@ function displayActivityMap () {
 
 }
 
+
+
 $(document).on("click", ".activity-btn", getActivity);
+
+
 
 
 
