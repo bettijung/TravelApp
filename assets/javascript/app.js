@@ -98,7 +98,7 @@ function getActivity () {
                     popupAnchor: [-3, -76],
                 });
 
-                pois[i].id = pois[i].name;
+                // pois[i].id = pois[i].name;
 
                 popupContent = pois[i].name;
 
@@ -110,7 +110,7 @@ function getActivity () {
 
             }
 
-            console.log(pois[0].id);
+            // console.log(pois[0].id);
 
             $(".leaflet-popup-content").css("cursor", "pointer");    
 
