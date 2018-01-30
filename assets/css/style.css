@@ -1,4 +1,17 @@
-/* Layout Stylesheet */
+/* Layout Stylesheet **********************/
+
+/*General Styling ========================*/
+/*========================================*/
+body {
+  background-color: #303030;
+  height: 768px;
+  width: 1024px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 nav ul a,
 nav .brand-logo {
   color: #FFFFFF;
@@ -8,15 +21,43 @@ p {
   line-height: 2rem;
 }
 
-.button-collapse {
-  color: #26a69a;
+img {
+    border: 0;
 }
 
+.btn {
+  margin: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+  .btn:hover {
+    transform: rotate(7deg);
+  }
+
+
+/*Nav Bar ================================*/
+/*========================================*/
+.navbar-fixed {
+  background-color: transparent;
+}
+  #logo-container {
+  /*  background-color: white;
+    opacity: 0.5;*/
+    font-size: 25px;
+    text-shadow: 1px 1px 2px #303030;
+  }
+  .nav-bar-btn {
+    font-size: 18px;
+  }
+
+
+/*Title and Image Containers =============*/
+/*========================================*/
 .parallax-container {
   min-height: 380px;
   line-height: 0;
   height: auto;
-  color: rgba(255,255,255,.9);
+  width: 100%;
 }
   .parallax-container .section {
     width: 100%;
@@ -37,45 +78,9 @@ p {
     min-width: 100%;
     min-height: 100%;
   }
-
-@media only screen and (max-width : 992px) {
-  .parallax-container .section {
-    position: absolute;
-    top: 40%;
+  .parallax img {
+    width: 100%;
   }
-  #index-banner .section {
-    top: 10%;
-  }
-}
-
-@media only screen and (max-width : 600px) {
-  #index-banner .section {
-    top: 0;
-  }
-}
-
-footer.page-footer {
-  margin: 0;
-}
-
-img {
-    border: 0;
-}
-
-
-/*******************/
-/*Custom stylesheet*/
-
-.navbar-fixed {
-  background-color: transparent;
-}
-
-#logo-container {
-/*  background-color: white;
-  opacity: 0.5;*/
-  font-size: 25px;
-  text-shadow: 1px 1px 2px #303030;
-}
 
 .no-pad-bot h1 {
   font-size: 65px;
@@ -86,83 +91,122 @@ img {
   text-shadow: 2px 2px 3px #303030;
 }
 
-.parallax img {
-  width: 100%;
-}
-
-.btn {
-  margin: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-  .btn:hover {
-    transform: rotate(7deg);
+  /*Background Image ====================*/
+  /*=====================================*/
+  .imgdiv1 {
+    height: 10px;
   }
+    #img1  {
+      height: 100%;
+      position: fixed;
+      /*opacity: 0.8;*/
+     }
 
-#map-id {
-	height: 724px;
-  width: 682px;
-	padding-left: 0;
-	padding-right: 0;
-	margin-right: 0;
-}
+  /*Title Area ==========================*/
+  /*=====================================*/
+  #index-banner {
+    padding-top: 0px;
+  }
+    .cont1 {
+      max-height: 0px;
+      width: 100%;
+    }
+    #start {
+      opacity: 0.9;
+    }
 
-body {
-	background-color: #303030;
-  height: 768px;
-  width: 1024px;
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: 0;
-  margin-right: 0;
-}
 
-.imgdiv1 {
-  height: 10px;
-}
-
- #img1  {
-  height: 100%;
-  position: fixed;
-  /*opacity: 0.8;*/
- }
-
-#index-banner {
-  padding-top: 0px;
-}
-
-.cont1 {
-  max-height: 0px;
-  width: 100%;
-}
-
+/*Activity Container =====================*/
+/*========================================*/
 .activity-container {
   margin-top: 0px;
 }
+  .activity-card {
+    opacity: 0.9;
+    background-color: #E8E8E8;
+  }
 
-.activity-card {
-  opacity: 0.9;
-  background-color: #E8E8E8;
-}
 
+/*Map Section ============================*/
+/*========================================*/
 #map-card {
-/*	opacity: 0.9;
-	background-color: #E8E8E8;*/
+/*  opacity: 0.9;
+  background-color: #E8E8E8;*/
   height: 724px;
   padding-top: 0;
-	/*margin-top: 40px;
-	margin-bottom: 40px;*/
-/*	width: 100%;*/
+  /*margin-top: 40px;
+  margin-bottom: 40px;*/
+/*  width: 100%;*/
+}
+  #map-id {
+    height: 724px;
+    width: 682px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 0;
+  }
 
+
+/*Side Section ===========================*/
+/*========================================*/
 .side-section {
 
 }
 
-#start {
-  opacity: 0.9;
+
+/*Footer =================================*/
+/*========================================*/
+footer.page-footer {
+  margin: 0;
 }
 
-.nav-bar-btn {
-  font-size: 18px;
+
+/******************************************/
+
+
+/*Media Queries ==========================*/
+/*========================================*/
+
+/*Rules for browser's width between 
+992px and 600px ================*/
+@media only screen and (max-width : 992px) {
+  .brand-logo {
+    left: 0;
+  }
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 0;
+  }
+
 }
+
+
+/*Rules for browser's width 
+600px or less ==================*/
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
