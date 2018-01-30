@@ -134,11 +134,10 @@ function getActivity () {
         async: false,
         dataType: "json",
         success: function (data, textStatus, jqXHR) {
-            console.log(data)
+            
             
 
             var markup = data.parse.text["*"];
-            console.log(markup)
             var blurb = $('<div></div>').html(markup);
  
             // remove links as they will not work
