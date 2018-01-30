@@ -27,7 +27,7 @@ $(document).ready(function(){
     $('#modal1').modal();
   });
 
-$("#googSubmit").on("click", function() {
+$(".googSubmit").on("click", function() {
 
     email = $("#email").val().trim()
     password = $("#password").val().trim()
