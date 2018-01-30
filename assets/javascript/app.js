@@ -50,9 +50,8 @@ function getActivity () {
 
 	console.log(activityVal);
 
-    $(activityVal+"1").attr("src", "assets/images/"+activityVal+ "1.jpeg");
-    $(activityVal+"2").attr("src", "assets/images/"+activityVal+ "2.jpeg");
-    $(activityVal+"3").attr("src", "assets/images/"+activityVal+ "3.jpeg");
+    $("#img2").attr("src", "assets/images/"+activityVal+".jpeg");
+    
 
 	$.ajax({
         url: 'https://api.sygictravelapi.com/1.0/en/places/list?parents=city:'+randCity+'&categories='+ activityVal +'&limit=20',
