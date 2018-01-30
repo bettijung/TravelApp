@@ -170,7 +170,6 @@ console.log(gate)
             $('#wiki-info').html($(blurb).find('p'));
 
             //needs container with ID article
-
            
  
         },
@@ -208,6 +207,8 @@ function displayActivityMap () {
         accessToken: 'pk.eyJ1IjoicGF1bGFwZXJvdXRrYSIsImEiOiJjamN4bDg1b3MxMmNrMnlvNXI4ZjVtZ2gyIn0.8-6Dt5FcrIKpSddbhgUPOQ'
     }).addTo(actMap);
 
+    actMap.scrollWheelZoom.disable();
+
     return actMap;
 
 }
@@ -223,8 +224,6 @@ cityInput = $("#citySearch").val().trim();
 
 
 cityKey()
-
-
 
 gate = 1
 
