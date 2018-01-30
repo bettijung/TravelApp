@@ -112,6 +112,8 @@ function getActivity () {
 
             // console.log(pois[0].id);
 
+            // $(".leaflet-pane").removeControl(".leaflet-zoom-anim", "leaflet-touch-zoom");
+
             $(".leaflet-popup-content").css("cursor", "pointer");    
 
             $(".leaflet-popup-content").on("click", function () {
@@ -167,6 +169,8 @@ function displayActivityMap () {
 
 
 $(document).on("click", ".activity-btn", getActivity);
+
+
 
 
 
