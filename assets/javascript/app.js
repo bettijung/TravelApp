@@ -124,6 +124,48 @@ function getActivity () {
 
 	})
 
+// wikipedia ajax call
+        var cityName = pois["0"].name_suffix;
+        cityName = cityName.split(", ")
+        cityName = cityName[0]
+        console.log(cityName)
+
+        $.ajax({
+        type: "GET",
+        url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&redirects&prop=text&section=0&page="+cityName+"&callback=?",
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        dataType: "json",
+        success: function (data, textStatus, jqXHR) {
+            console.log(data)
+            
+
+            var markup = data.parse.text["*"];
+            console.log(markup)
+            var blurb = $('<div></div>').html(markup);
+ 
+            // remove links as they will not work
+            blurb.find('a').each(function() { $(this).replaceWith($(this).html()); });
+ 
+            // remove any references
+            blurb.find('sup').remove()
+                .find('img').remove()
+                .find('link').remove();
+
+ 
+            // remove cite error
+            blurb.find('.mw-ext-cite-error').remove();
+            $('#article').html($(blurb).find('p'));
+
+            //needs container with ID article
+
+           
+ 
+        },
+        error: function (errorMessage) {
+        }
+    });
+
 }
 
 function displayActivityMap () {
