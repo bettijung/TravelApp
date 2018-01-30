@@ -4,8 +4,6 @@
 /*========================================*/
 body {
   background-color: #303030;
-  height: 768px;
-  width: 1024px;
   padding-left: 0;
   padding-right: 0;
   margin-left: 0;
@@ -127,17 +125,39 @@ img {
   }
 
 
+/*City Info Section ===========================*/
+/*========================================*/
+.city-info {
+  opacity: 0.9;
+  background-color: #E8E8E8;
+  margin: 5px 20px;
+  padding: 2px 5px;
+}
+  #wiki-header {
+    text-shadow: 2px 2px 3px grey;
+  }
+  #wiki-info {
+    margin: 10px; 
+  }
+
+
 /*Map Section ============================*/
 /*========================================*/
 #map-card {
-/*  opacity: 0.9;
-  background-color: #E8E8E8;*/
-  height: 724px;
+  height: 800px;
   padding-top: 0;
-  /*margin-top: 40px;
-  margin-bottom: 40px;*/
-/*  width: 100%;*/
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  background-color: #E8E8E8;
+
 }
+  .map-header h4 {
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-shadow: 1px 1px 2px grey;
+  }
   #map-id {
     height: 724px;
     width: 682px;
@@ -147,17 +167,11 @@ img {
   }
 
 
-/*Side Section ===========================*/
-/*========================================*/
-.side-section {
-
-}
-
-
 /*Footer =================================*/
 /*========================================*/
 footer.page-footer {
   margin: 0;
+  margin-top: 20px;
 }
 
 
