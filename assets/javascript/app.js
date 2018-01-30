@@ -153,7 +153,7 @@ function getActivity () {
  
             // remove cite error
             blurb.find('.mw-ext-cite-error').remove();
-            $('#article').html($(blurb).find('p'));
+            $('#wiki-info').html($(blurb).find('p'));
 
             //needs container with ID article
 
