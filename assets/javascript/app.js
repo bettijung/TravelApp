@@ -50,9 +50,8 @@ function getActivity () {
 
 	console.log(activityVal);
 
-    $(activityVal+"1").attr("src", "assets/images/"+activityVal+ "1.jpeg");
-    $(activityVal+"2").attr("src", "assets/images/"+activityVal+ "2.jpeg");
-    $(activityVal+"3").attr("src", "assets/images/"+activityVal+ "3.jpeg");
+    $("#img2").attr("src", "assets/images/"+activityVal+".jpeg");
+    
 
 	$.ajax({
         url: 'https://api.sygictravelapi.com/1.0/en/places/list?parents=city:'+randCity+'&categories='+ activityVal +'&limit=20',
@@ -121,18 +120,49 @@ function getActivity () {
                 window.open('http://google.com/search?q='+ $(this).text() + ", " + popupCity);   
             });
 
-            const cityName = pois["0"].name_suffix
+            
 
-            // const wikiURL = "https://en.wikipedia.org/w/api.php?action=query&titles="+cityName+"&prop=revisions&rvprop=content&format=json&formatversion=2"
-            // $.ajax({
-            //     url: wikiURL,
-            //     method: "GET"
-            // }).then(function(response) {
+            // wikipedia ajax call
+        var cityName = pois["0"].name_suffix;
+        cityName = cityName.split(", ")
+        cityName = cityName[0]
+        console.log(cityName)
 
-            // console.log(response)
+        $.ajax({
+        type: "GET",
+        url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&redirects&prop=text&section=0&page="+cityName+"&callback=?",
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        dataType: "json",
+        success: function (data, textStatus, jqXHR) {
+            
+            
 
-            // })    
-                   
+            var markup = data.parse.text["*"];
+            var blurb = $('<div></div>').html(markup);
+ 
+            // remove links as they will not work
+            blurb.find('a').each(function() { $(this).replaceWith($(this).html()); });
+            blurb.find('img').each(function() { $(this).replaceWith($(this).html()); });
+ 
+            // remove any references
+            blurb.find('sup').remove()
+                .find('img').remove()
+                .find('link').remove();
+
+ 
+            // remove cite error
+            blurb.find('.mw-ext-cite-error').remove();
+            $('#article').html($(blurb).find('p'));
+
+            //needs container with ID article
+
+           
+ 
+        },
+        error: function (errorMessage) {
+        }
+    });
         }
 
 	})
@@ -148,6 +178,8 @@ function getActivity () {
         }
 
 	})
+
+
 
 }
 
