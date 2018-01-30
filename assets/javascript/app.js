@@ -119,35 +119,9 @@ function getActivity () {
                 window.open('http://google.com/search?q='+ $(this).text() + ", " + popupCity);   
             });
 
-            const cityName = pois["0"].name_suffix
+            
 
-            // const wikiURL = "https://en.wikipedia.org/w/api.php?action=query&titles="+cityName+"&prop=revisions&rvprop=content&format=json&formatversion=2"
-            // $.ajax({
-            //     url: wikiURL,
-            //     method: "GET"
-            // }).then(function(response) {
-
-            // console.log(response)
-
-            // })    
-                   
-        }
-
-	})
-
-//Getting a (not ordered)cities list
-	$.ajax({
-        url: 'https://api.sygictravelapi.com/1.0/en/places/list?level=city&limit=50',
-        beforeSend: function(xhr) {
-             xhr.setRequestHeader("x-api-key", "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq")
-        }, success: function(data){
-            console.log(data);
-            //process the JSON data etc
-        }
-
-	})
-
-// wikipedia ajax call
+            // wikipedia ajax call
         var cityName = pois["0"].name_suffix;
         cityName = cityName.split(", ")
         cityName = cityName[0]
@@ -169,6 +143,7 @@ function getActivity () {
  
             // remove links as they will not work
             blurb.find('a').each(function() { $(this).replaceWith($(this).html()); });
+            blurb.find('img').each(function() { $(this).replaceWith($(this).html()); });
  
             // remove any references
             blurb.find('sup').remove()
@@ -188,6 +163,23 @@ function getActivity () {
         error: function (errorMessage) {
         }
     });
+        }
+
+	})
+
+//Getting a (not ordered)cities list
+	$.ajax({
+        url: 'https://api.sygictravelapi.com/1.0/en/places/list?level=city&limit=50',
+        beforeSend: function(xhr) {
+             xhr.setRequestHeader("x-api-key", "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq")
+        }, success: function(data){
+            console.log(data);
+            //process the JSON data etc
+        }
+
+	})
+
+
 
 }
 
