@@ -1,4 +1,7 @@
 
+
+
+
 // Initialize Firebase
 var config = {
 apiKey: "AIzaSyCVaElevwp7UucKLxa8upUiILDGpqSK7c4",
@@ -15,8 +18,8 @@ const dbRef = firebase.database().ref('TravelerInputs/traveler');
 
 // =========================================================
 
-
-
+var city = null
+var gate = 0
 $(document).ready(function(){
       
     //modal trigger
@@ -42,19 +45,30 @@ $("#googSubmit").on("click", function() {
 
 function getActivity () {
 
+
 	event.preventDefault();
+console.log(gate)
+	if (gate === 1) {
 
-	var activityVal = $(this).attr("id").trim()
+        city = cityKey()
+        console.log(cityKey())
+        console.log(city)
+        var activityVal = "eating"
 
-	randCity = Math.floor(Math.random() * 10) + 1;
 
+    } else {
+
+        var activityVal = $(this).attr("id").trim()
+        var city = Math.floor(Math.random() * 10) + 1;
+	   }
+    console.log(city)
 	console.log(activityVal);
 
     $("#img2").attr("src", "assets/images/"+activityVal+".jpeg");
     
 
 	$.ajax({
-        url: 'https://api.sygictravelapi.com/1.0/en/places/list?parents=city:'+randCity+'&categories='+ activityVal +'&limit=20',
+        url: 'https://api.sygictravelapi.com/1.0/en/places/list?parents=city:'+city+'&categories='+ activityVal +'&limit=20',
         beforeSend: function(xhr) {
              xhr.setRequestHeader("x-api-key", "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq")
         }, success: function(response){
@@ -202,10 +216,54 @@ function displayActivityMap () {
 
 $(document).on("click", ".activity-btn", getActivity);
 
+$(document).on("click", "#cityButton", function(){
+
+cityInput = $("#citySearch").val().trim();
+// converts the city input into a city code
+
+
+cityKey()
 
 
 
+gate = 1
 
+getActivity()
+
+
+
+});
+
+
+function cityCode(a) {
+
+    city = a.data.places["0"].id
+        city = city.split(":")
+        city = city[1]
+        console.log(city)
+
+        return city
+        
+}
+
+function cityKey() {
+        $.ajax({
+        url: 'https://api.sygictravelapi.com/1.0/en/places/list?query='+cityInput,
+        beforeSend: function(xhr) {
+             xhr.setRequestHeader("x-api-key", "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq")
+        }, success: function convertToCode(response){
+            console.log(response);
+            //process the JSON data etc
+        cityCode(response)
+        console.log(city)
+        
+        
+        },
+        async: false
+
+    })
+        return city
+}
 
 
 
