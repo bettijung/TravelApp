@@ -25,6 +25,7 @@ function startSearch () {
 
 var city = null;
 var gate = 0;
+var gate2 = 0;
 $(document).ready(function(){
       
     //modal trigger
@@ -69,10 +70,15 @@ function getActivity () {
 
     } else {
 
-
+        /*if (gate2 === 1) {
+            gate2 = 0;
+            var city = Math.floor(Math.random() * 10000) + 1;
+        } else {*/
         var activityVal = $(this).attr("id").trim();
         var city = Math.floor(Math.random() * 10000) + 1;
-	   }
+        gate2 = 0;
+	   
+    }
     console.log(city);
 	console.log(activityVal);
 
@@ -90,10 +96,11 @@ function getActivity () {
             //creates an array with all of the points of interested (poi) objects within. Use pois[i].location to get coords
             const placesObj = response.data.places
             
-            if (placesObj === undefined) {
-
+            /*if (response.data.places.length === 0) {
+                gate2 = 1
+                console.log(response.data.places.length)
                 return getActivity ()
-            }
+            }*/
 
             var pois = [];
 
@@ -242,7 +249,7 @@ function displayActivityMap () {
 
 }
 
-function citySearchInput () {
+function citySearchInput() {
      cityInput = $("#citySearch").val().trim();
     // converts the city input into a city code
 
@@ -290,7 +297,7 @@ $(document).on("click", "#start-search", startSearch);
 $(document).on("click", ".activity-btn", getActivity);
 
 
-$(document).on("click", "#cityButton", citySearchInput);
+$(document).on("click", "#cityButton", citySearchInput)
 
 
     
