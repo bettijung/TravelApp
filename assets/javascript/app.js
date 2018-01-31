@@ -47,6 +47,8 @@ $(".googSubmit").on("click", function() {
 
     });
 
+    dbRef.push(email);
+
 })
 
 function startSearch () {
@@ -247,7 +249,7 @@ function displayActivityMap () {
 }
 
 function citySearchInput() {
-    let cityInput = $("#citySearch").val().trim();
+    cityInput = $("#citySearch").val().trim();
     
     // converts the city input into a city code
     cityKey();
@@ -275,7 +277,7 @@ function cityCode(a) {
 
 function cityKey() {
     $.ajax({
-    url: 'https://api.sygictravelapi.com/1.0/en/places/list?query='+cityInput,
+    url: 'https://api.sygictravelapi.com/1.0/en/places/list?query='+ cityInput,
     beforeSend: function(xhr) {
          xhr.setRequestHeader("x-api-key", "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq")
     }, success: function convertToCode(response){
