@@ -1,4 +1,4 @@
-
+//["0"].thumbnail_url
 
 
 
@@ -66,7 +66,7 @@ console.log(gate)
     } else {
 
         var activityVal = $(this).attr("id").trim()
-        var city = Math.floor(Math.random() * 10) + 1;
+        var city = Math.floor(Math.random() * 10000) + 1;
 	   }
     console.log(city)
 	console.log(activityVal);
@@ -84,6 +84,12 @@ console.log(gate)
             
             //creates an array with all of the points of interested (poi) objects within. Use pois[i].location to get coords
             const placesObj = response.data.places
+            
+            if (placesObj === undefined) {
+
+                return getActivity ()
+            }
+
             var pois = [];
 
             for (var i = 0; i < placesObj.length; i++) {
