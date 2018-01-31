@@ -94,7 +94,7 @@ const dbRef = firebase.database().ref('TravelerInputs/traveler');
 
 var city = null;
 var gate = 0;
-var gate2 = 0;
+let actMap 
 
 $(document).ready(function(){
       
@@ -133,10 +133,14 @@ function startSearch () {
 
 
 function getActivity () {
-
-	event.preventDefault();
+    //reset display area
+    $("#map-id").empty();
+    
+    $("#wiki-info").text();
+	
+    event.preventDefault();
     console.log(gate);
-
+    //if the city search button is clicked, feeds API code of chosen city with a default activity of eating
 	if (gate === 1) {
 
         city = cityKey();
@@ -144,7 +148,7 @@ function getActivity () {
         console.log(city);
         var activityVal = "eating";
 
-
+        // if an actvity is chosen, random city code is selected
     } else {
 
         /*if (gate2 === 1) {
@@ -306,8 +310,11 @@ function getActivity () {
 }
 
 function displayActivityMap () {
+    if (actMap != undefined) {
+   actMap.remove();
+}
     
-    let actMap = L.map("map-id").setView([latitude, longitude], 13);
+    actMap = L.map("map-id").setView([latitude, longitude], 13);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicGF1bGFwZXJvdXRrYSIsImEiOiJjamN4bDg1b3MxMmNrMnlvNXI4ZjVtZ2gyIn0.8-6Dt5FcrIKpSddbhgUPOQ', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -317,7 +324,6 @@ function displayActivityMap () {
     }).addTo(actMap);
 
     actMap.scrollWheelZoom.disable();
-
     return actMap;
 
 }
