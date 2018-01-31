@@ -1,3 +1,78 @@
+var searchRadiusInMile = 20;
+var searchLocality;
+var searchBox;
+var searchCoords;
+
+const sigicApiKey = '3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq';
+const sigicURLBase = 'https://api.sygictravelapi.com/1.0/en/places/';
+
+const KMToDegreesAt0 = 0.008983152841195214;
+const milePerKM = 0.62137;
+const KMPerMile = 1.60934;
+
+const degreePerKM   = 0.0090090090;
+const degreePerMile = 0.0144927536;
+
+//https://stackoverflow.com/questions/238260/how-to-calculate-the-bounding-box-for-a-given-lat-lng-location
+function deg2rad(degrees) {
+    return Math.PI * degrees / 180.0;
+}
+
+function rad2deg(radians) {
+    return 180.0 * radians / Math.PI;
+}
+
+function createBbKM(coords, deltaKM) {
+    var deltaLat = deltaKM * KMToDegreesAt0;
+    var deltaLng = deltaLat / Math.cos(deg2rad(coords.lat));
+
+    var A = [
+        coords.lat - deltaLat, // south
+        coords.lng - deltaLng, // west
+        coords.lat + deltaLat, // north
+        coords.lng + deltaLng  // east
+    ];
+    return A.join(',');
+}
+
+function createBbMile(coords, deltaMi) {
+    return createBbKM(coords, deltaMi * KMPerMile);
+}
+
+function getCoordsFromTown(town) {
+    const googleAPI =
+        'https://maps.googleapis.com/maps/api/geocode/json?' +
+        $.param({
+            address: town,
+            components: 'locality',
+            key: 'AIzaSyBbdcRWUQOhcj0qb2eCc-bzNBuGOfN_32k'
+        });
+
+    let request = new XMLHttpRequest();
+    request.open('GET', googleAPI, false); // `false` makes the request synchronous
+    request.send(null);
+
+    if (request.status === 200) {
+        let Coords=JSON.parse(request.responseText).results[0].geometry.location;
+        //let ret={lat: Coords.lat, lng: Coords.lng };
+        return {lat: Coords.lat, lng: Coords.lng };
+    }
+    return null;
+}
+
+function callAjax(queryURL, apiKey, addToURL, apiParam, apiSuccess) {
+    var queryURLComplete = queryURL + addToURL + '?' + $.param(apiParam);
+    console.log(queryURLComplete);
+
+    $.ajax({
+        url: queryURLComplete,
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('x-api-key', apiKey);
+        },
+        success: apiSuccess
+    });
+}
+
 //["0"].thumbnail_url
 
 // Initialize Firebase
