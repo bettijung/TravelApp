@@ -87,14 +87,14 @@ var config = {
 
 firebase.initializeApp(config);
 
-const dbRef = firebase.database().ref('TravelerInputs');
+let dbRef = firebase.database().ref('TravelerInputs/users');
 
 // =========================================================
 
 
 var city = null;
 var gate = 0;
-let actMap 
+var gate2 = 0;
 
 $(document).ready(function(){
       
@@ -121,10 +121,7 @@ $(".googSubmit").on("click", function() {
 
     });
 
-
-});
-
-firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function(user) {
 
       if (user) {
 
@@ -133,21 +130,30 @@ firebase.auth().onAuthStateChanged(function(user) {
         // emailVerified
 
             if (user != null) {
-              name = user.displayName;
+              // name = user.displayName;
               email = user.email;
               // emailVerified = user.emailVerified;
               uid = user.uid;
-        }
+            }
 
-        dbRef = dbRef + "/" + uid;
+        console.log(uid);
 
-        dbRef.push($("#citySearch").val());
+        dbRef = dbRef + '/' + uid;
 
-      } else {
+        console.log(dbRef);
+
+        $(document).on("click", "#cityButton", citySearchInput)
+
+      }
+
+      else {
 
         console.log("No user is signed in.");
 
       }
+});
+
+
 });
 
 function startSearch () {
@@ -158,14 +164,10 @@ function startSearch () {
 
 
 function getActivity () {
-    //reset display area
-    $("#map-id").empty();
-    
-    $("#wiki-info").text();
-	
-    event.preventDefault();
+
+	event.preventDefault();
     console.log(gate);
-    //if the city search button is clicked, feeds API code of chosen city with a default activity of eating
+
 	if (gate === 1) {
 
         city = cityKey();
@@ -173,7 +175,7 @@ function getActivity () {
         console.log(city);
         var activityVal = "eating";
 
-        // if an actvity is chosen, random city code is selected
+
     } else {
 
         /*if (gate2 === 1) {
@@ -335,11 +337,8 @@ function getActivity () {
 }
 
 function displayActivityMap () {
-    if (actMap != undefined) {
-   actMap.remove();
-}
     
-    actMap = L.map("map-id").setView([latitude, longitude], 13);
+    let actMap = L.map("map-id").setView([latitude, longitude], 13);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicGF1bGFwZXJvdXRrYSIsImEiOiJjamN4bDg1b3MxMmNrMnlvNXI4ZjVtZ2gyIn0.8-6Dt5FcrIKpSddbhgUPOQ', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -349,6 +348,7 @@ function displayActivityMap () {
     }).addTo(actMap);
 
     actMap.scrollWheelZoom.disable();
+
     return actMap;
 
 }
@@ -407,7 +407,7 @@ $(document).on("click", "#start-search", startSearch);
 $(document).on("click", ".activity-btn", getActivity);
 
 
-$(document).on("click", "#cityButton", citySearchInput)
+// $(document).on("click", "#cityButton", citySearchInput)
 
 
     
