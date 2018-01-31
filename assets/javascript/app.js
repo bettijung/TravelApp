@@ -87,7 +87,7 @@ var config = {
 
 firebase.initializeApp(config);
 
-const dbRef = firebase.database().ref('TravelerInputs/traveler');
+const dbRef = firebase.database().ref('TravelerInputs');
 
 // =========================================================
 
@@ -121,9 +121,34 @@ $(".googSubmit").on("click", function() {
 
     });
 
-    // dbRef.push(email);
 
-})
+});
+
+firebase.auth().onAuthStateChanged(function(user) {
+
+      if (user) {
+
+        var user = firebase.auth().currentUser;
+        var name, email, uid;
+        // emailVerified
+
+            if (user != null) {
+              name = user.displayName;
+              email = user.email;
+              // emailVerified = user.emailVerified;
+              uid = user.uid;
+        }
+
+        dbRef = dbRef + "/" + uid;
+
+        dbRef.push($("#citySearch").val());
+
+      } else {
+
+        console.log("No user is signed in.");
+
+      }
+});
 
 function startSearch () {
     $('html, body').animate({
