@@ -29,8 +29,14 @@ $(document).ready(function(){
 
 $(".googSubmit").on("click", function() {
 
-    email = $("#email").val().trim();
-    password = $("#password").val().trim();
+    let email = $("#email").val().trim();
+    let password = $("#password").val().trim();
+
+    $("#log-in").html("Switch User");
+
+    $("#email").val("");
+    $("#password").val("");
+
 
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
     // Handle Errors here.
