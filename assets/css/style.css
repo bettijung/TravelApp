@@ -120,13 +120,14 @@ img {
   .city-card {
     opacity: 0.9;
     background-color: #E8E8E8;
+    float: ;
   }
 
 
 /*Activity Container =====================*/
 /*========================================*/
 .activity-container {
-  margin-top: 0px;
+  margin: 0px;
 }
   .activity-card {
     opacity: 0.9;
