@@ -2,12 +2,12 @@
 
 // Initialize Firebase
 var config = {
-apiKey: "AIzaSyCVaElevwp7UucKLxa8upUiILDGpqSK7c4",
-authDomain: "our-travel.firebaseapp.com",
-databaseURL: "https://our-travel.firebaseio.com",
-projectId: "our-travel",
-storageBucket: "our-travel.appspot.com",
-messagingSenderId: "1005789384165"
+    apiKey: "AIzaSyCVaElevwp7UucKLxa8upUiILDGpqSK7c4",
+    authDomain: "our-travel.firebaseapp.com",
+    databaseURL: "https://our-travel.firebaseio.com",
+    projectId: "our-travel",
+    storageBucket: "our-travel.appspot.com",
+    messagingSenderId: "1005789384165"
 };
 
 firebase.initializeApp(config);
@@ -18,14 +18,14 @@ const dbRef = firebase.database().ref('TravelerInputs/traveler');
 
 function startSearch () {
     $('html, body').animate({
-        scrollTop: $("#target-element").offset().top
+        scrollTop: $(".city-card").offset().top
     }, 1000);
 }
-
 
 var city = null;
 var gate = 0;
 var gate2 = 0;
+
 $(document).ready(function(){
       
     //modal trigger
@@ -59,7 +59,8 @@ $(".googSubmit").on("click", function() {
 function getActivity () {
 
 	event.preventDefault();
-    console.log(gate)
+    console.log(gate);
+
 	if (gate === 1) {
 
         city = cityKey();
@@ -210,10 +211,10 @@ function getActivity () {
             $('html, body').animate({
                 scrollTop: $("#map-card").offset().top
             }, 1000);
-    }
+        }
 
 
-})
+    })
 
 //Getting a (not ordered)cities list
 	$.ajax({
@@ -226,8 +227,6 @@ function getActivity () {
         }
 
 	})
-
-
 
 }
 
@@ -246,7 +245,6 @@ function displayActivityMap () {
 
     return actMap;
 
-
 }
 
 function citySearchInput() {
@@ -257,17 +255,21 @@ function citySearchInput() {
 
     gate = 1;
 
+    $('html, body').animate({
+        scrollTop: $("#map-card").offset().top
+    }, 1000);
+
     getActivity();
 }
 
 function cityCode(a) {
 
-        city = a.data.places["0"].id;
-            city = city.split(":");
-            city = city[1];
-            console.log(city);
+    city = a.data.places["0"].id;
+    city = city.split(":");
+    city = city[1];
+    console.log(city);
 
-            return city;
+    return city;
             
 }
 
@@ -287,7 +289,8 @@ function cityKey() {
         async: false
 
     })
-        return city;
+    
+    return city;
 }
 
 
