@@ -16,11 +16,6 @@ const dbRef = firebase.database().ref('TravelerInputs/traveler');
 
 // =========================================================
 
-function startSearch () {
-    $('html, body').animate({
-        scrollTop: $(".city-card").offset().top
-    }, 1000);
-}
 
 var city = null;
 var gate = 0;
@@ -31,7 +26,8 @@ $(document).ready(function(){
     //modal trigger
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('#modal1').modal();
-  });
+
+});
 
 $(".googSubmit").on("click", function() {
 
@@ -49,11 +45,15 @@ $(".googSubmit").on("click", function() {
     var errorCode = error.code;
     var errorMessage = error.message;
 
-
-});
+    });
 
 })
 
+function startSearch () {
+    $('html, body').animate({
+        scrollTop: $(".city-card").offset().top
+    }, 1000);
+}
 
 
 function getActivity () {
@@ -215,7 +215,7 @@ function getActivity () {
 
     })
 
-//Getting a (not ordered)cities list
+    //Getting a (not ordered)cities list
 	$.ajax({
         url: 'https://api.sygictravelapi.com/1.0/en/places/list?level=city&limit=50',
         beforeSend: function(xhr) {
@@ -247,9 +247,9 @@ function displayActivityMap () {
 }
 
 function citySearchInput() {
-     cityInput = $("#citySearch").val().trim();
+    let cityInput = $("#citySearch").val().trim();
+    
     // converts the city input into a city code
-
     cityKey();
 
     gate = 1;
@@ -259,6 +259,7 @@ function citySearchInput() {
     }, 1000);
 
     getActivity();
+
 }
 
 function cityCode(a) {
@@ -273,19 +274,19 @@ function cityCode(a) {
 }
 
 function cityKey() {
-        $.ajax({
-        url: 'https://api.sygictravelapi.com/1.0/en/places/list?query='+cityInput,
-        beforeSend: function(xhr) {
-             xhr.setRequestHeader("x-api-key", "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq")
-        }, success: function convertToCode(response){
-            console.log(response);
-            //process the JSON data etc
-        cityCode(response);
-        console.log(city);
-        
-        
-        },
-        async: false
+    $.ajax({
+    url: 'https://api.sygictravelapi.com/1.0/en/places/list?query='+cityInput,
+    beforeSend: function(xhr) {
+         xhr.setRequestHeader("x-api-key", "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq")
+    }, success: function convertToCode(response){
+        console.log(response);
+        //process the JSON data etc
+    cityCode(response);
+    console.log(city);
+    
+    },
+    
+    async: false
 
     })
     
