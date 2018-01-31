@@ -18,7 +18,7 @@ const dbRef = firebase.database().ref('TravelerInputs/traveler');
 
 function startSearch () {
     $('html, body').animate({
-        scrollTop: $("#search-city").offset().top
+        scrollTop: $("#target-element").offset().top
     }, 1000);
 }
 
@@ -255,14 +255,14 @@ function citySearchInput () {
 
 function cityCode(a) {
 
-        city = a.data.places["0"].id
-            city = city.split(":")
-            city = city[1]
-            console.log(city)
+        city = a.data.places["0"].id;
+            city = city.split(":");
+            city = city[1];
+            console.log(city);
 
             return city;
             
-    }
+}
 
 function cityKey() {
         $.ajax({
@@ -272,15 +272,15 @@ function cityKey() {
         }, success: function convertToCode(response){
             console.log(response);
             //process the JSON data etc
-        cityCode(response)
-        console.log(city)
+        cityCode(response);
+        console.log(city);
         
         
         },
         async: false
 
     })
-        return city
+        return city;
 }
 
 
