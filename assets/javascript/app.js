@@ -1,6 +1,4 @@
-
-
-
+//["0"].thumbnail_url
 
 // Initialize Firebase
 var config = {
@@ -18,8 +16,15 @@ const dbRef = firebase.database().ref('TravelerInputs/traveler');
 
 // =========================================================
 
-var city = null
-var gate = 0
+function startSearch () {
+    $('html, body').animate({
+        scrollTop: $("#search-city").offset().top
+    }, 1000);
+}
+
+
+var city = null;
+var gate = 0;
 $(document).ready(function(){
       
     //modal trigger
@@ -29,13 +34,20 @@ $(document).ready(function(){
 
 $(".googSubmit").on("click", function() {
 
-    email = $("#email").val().trim()
-    password = $("#password").val().trim()
+    let email = $("#email").val().trim();
+    let password = $("#password").val().trim();
+
+    $("#log-in").html("Switch User");
+
+    $("#email").val("");
+    $("#password").val("");
+
 
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
+
 
 });
 
@@ -45,23 +57,23 @@ $(".googSubmit").on("click", function() {
 
 function getActivity () {
 
-
 	event.preventDefault();
-console.log(gate)
+    console.log(gate)
 	if (gate === 1) {
 
-        city = cityKey()
-        console.log(cityKey())
-        console.log(city)
-        var activityVal = "eating"
+        city = cityKey();
+        console.log(cityKey());
+        console.log(city);
+        var activityVal = "eating";
 
 
     } else {
 
-        var activityVal = $(this).attr("id").trim()
-        var city = Math.floor(Math.random() * 10) + 1;
+
+        var activityVal = $(this).attr("id").trim();
+        var city = Math.floor(Math.random() * 10000) + 1;
 	   }
-    console.log(city)
+    console.log(city);
 	console.log(activityVal);
 
     $("#img2").attr("src", "assets/images/"+activityVal+".jpeg");
@@ -77,6 +89,12 @@ console.log(gate)
             
             //creates an array with all of the points of interested (poi) objects within. Use pois[i].location to get coords
             const placesObj = response.data.places
+            
+            if (placesObj === undefined) {
+
+                return getActivity ()
+            }
+
             var pois = [];
 
             for (var i = 0; i < placesObj.length; i++) {
@@ -113,7 +131,12 @@ console.log(gate)
 
                 // pois[i].id = pois[i].name;
 
-                popupContent = pois[i].name;
+                console.log(pois[i].thumbnail_url);
+
+                popupPic = pois[i].thumbnail_url;
+
+                popupContent = pois[i].name + "<img src=popupPic>";
+
 
                 popupCity = pois[i].name_suffix;
 
@@ -170,7 +193,6 @@ console.log(gate)
             $('#wiki-info').html($(blurb).find('p'));
 
             //needs container with ID article
-
            
  
         },
@@ -208,43 +230,34 @@ function displayActivityMap () {
         accessToken: 'pk.eyJ1IjoicGF1bGFwZXJvdXRrYSIsImEiOiJjamN4bDg1b3MxMmNrMnlvNXI4ZjVtZ2gyIn0.8-6Dt5FcrIKpSddbhgUPOQ'
     }).addTo(actMap);
 
+    actMap.scrollWheelZoom.disable();
+
     return actMap;
 
 }
 
+function citySearchInput () {
+     cityInput = $("#citySearch").val().trim();
+    // converts the city input into a city code
 
 
-$(document).on("click", ".activity-btn", getActivity);
+    cityKey();
 
-$(document).on("click", "#cityButton", function(){
+    gate = 1;
 
-cityInput = $("#citySearch").val().trim();
-// converts the city input into a city code
-
-
-cityKey()
-
-
-
-gate = 1
-
-getActivity()
-
-
-
-});
-
+    getActivity();
+}
 
 function cityCode(a) {
 
-    city = a.data.places["0"].id
-        city = city.split(":")
-        city = city[1]
-        console.log(city)
+        city = a.data.places["0"].id
+            city = city.split(":")
+            city = city[1]
+            console.log(city)
 
-        return city
-        
-}
+            return city;
+            
+    }
 
 function cityKey() {
         $.ajax({
@@ -264,6 +277,18 @@ function cityKey() {
     })
         return city
 }
+
+
+$(document).on("click", "#start-search", startSearch);
+
+
+$(document).on("click", ".activity-btn", getActivity);
+
+
+$(document).on("click", "#cityButton", citySearchInput);
+
+
+    
 
 
 
