@@ -4,23 +4,16 @@
 <head>
 
 	<meta charset="utf-8">
-
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-
 	<title>Travel App</title>
-
-	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/icon" href="assets/images/favicon.ico">
 	
 	<!-- Style Links -->
 	
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
   	integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
   	crossorigin=""/>
-  <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet'/>
-	
+  	<link href='https://api.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 	<!-- Firebase Reference -->
@@ -36,7 +29,7 @@
 	<!-- Auth Modal (popup) when user clicks Log In -->
 	<div id="modal1" class="modal">
     <div class="modal-content">
-      	<h4>Log In using Gmail</h4>
+      	<h4>Log-in using Gmail</h4>
       	<div class="row">
 	        <form class="col s12">
 	          	<div class="row modal-form-row">
@@ -47,7 +40,7 @@
 	          	</div>
 	          	<div class="row">
 		            <div class="input-field col s12">
-		              	<input name="password" id="password" type="password" class="validate">
+		              	<input id="password" type="text" class="validate">
 		              	<label for="password">Password</label>
 		            </div>
 	          	</div>                 
@@ -55,7 +48,7 @@
       	</div>
     </div>
     <div class="modal-footer">
-      	<a class="googSubmit modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+      	<a class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
     </div>
   	</div>
 	
@@ -65,7 +58,7 @@
 	        <a id="logo-container" href="#" class="brand-logo"><i class="large material-icons">directions_bike</i>TravelMe.com</a>
 	        <ul class="right darken-4">
 	            <li><a href="#">Restart My Search</a></li>
-	            <li><a href="#modal1" class="waves-effect waves-light nav-bar-btn modal-trigger" id="log-in">Log In</a></li>
+	            <li><a href="#modal1" class="waves-effect waves-light nav-bar-btn modal-trigger">Log In</a></li>
 	        </ul>
 	    </div>
 	</nav>
@@ -81,11 +74,10 @@
 					<h5 class="header col s12 light">A comprehensive app that will find your perfect travel destination.</h5>
 				</div>
 				<div class="row center">
-					<a class="waves-effect waves-light btn red" id="start-search">Start My Search</a>
+					<a class="waves-effect waves-light btn red" id="start">Start My Search</a>
 				</div>
 
 				<!-- City Search Box -->
-
 				<div class="row">
 			        <div class="col s12 l8 card city-card">
 			            <div class="card-content grey-text">
@@ -106,7 +98,6 @@
 				
 			</div>		
 		</div>
-
 
 		<!-- Background Image -->
 		<div class="parallax imgdiv1">
@@ -168,7 +159,7 @@
 	    </div>
 	</div>
 
-	<!-- Map Section -->
+	<!-- Map & Info Section -->
 	<div class="row" id="map-card">
 	    <div class="row center map-header">
 	    	<br>
