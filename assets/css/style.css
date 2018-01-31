@@ -49,10 +49,10 @@ img {
   }
 
 
-/*Title and Image Containers =============*/
+/*Title and Image Container =============*/
 /*========================================*/
 .parallax-container {
-  min-height: 380px;
+  min-height: 450px;
   line-height: 0;
   height: auto;
   width: 100%;
@@ -112,6 +112,14 @@ img {
     #start {
       opacity: 0.9;
     }
+
+  /*City Search Box ======================*/
+  /*=====================================*/
+  .city-card {
+    opacity: 0.9;
+    background-color: #E8E8E8;
+    
+  }
 
 
 /*Activity Container =====================*/
@@ -195,6 +203,9 @@ footer.page-footer {
     top: 0;
   }
 
+  .city-search {
+    width: 100%;
+  }
 }
 
 
@@ -203,6 +214,9 @@ footer.page-footer {
 @media only screen and (max-width : 600px) {
   #index-banner .section {
     top: 0;
+  }
+  .city-search {
+    width: 100%;
   }
 }
 
