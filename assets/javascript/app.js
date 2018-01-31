@@ -1,7 +1,5 @@
 //["0"].thumbnail_url
 
-
-
 // Initialize Firebase
 var config = {
 apiKey: "AIzaSyCVaElevwp7UucKLxa8upUiILDGpqSK7c4",
@@ -18,8 +16,15 @@ const dbRef = firebase.database().ref('TravelerInputs/traveler');
 
 // =========================================================
 
-var city = null
-var gate = 0
+function startSearch () {
+    $('html, body').animate({
+        scrollTop: $("#search-city").offset().top
+    }, 1000);
+}
+
+
+var city = null;
+var gate = 0;
 $(document).ready(function(){
       
     //modal trigger
@@ -52,23 +57,23 @@ $(".googSubmit").on("click", function() {
 
 function getActivity () {
 
-
 	event.preventDefault();
-console.log(gate)
+    console.log(gate)
 	if (gate === 1) {
 
-        city = cityKey()
-        console.log(cityKey())
-        console.log(city)
-        var activityVal = "eating"
+        city = cityKey();
+        console.log(cityKey());
+        console.log(city);
+        var activityVal = "eating";
 
 
     } else {
 
-        var activityVal = $(this).attr("id").trim()
+
+        var activityVal = $(this).attr("id").trim();
         var city = Math.floor(Math.random() * 10000) + 1;
 	   }
-    console.log(city)
+    console.log(city);
 	console.log(activityVal);
 
     $("#img2").attr("src", "assets/images/"+activityVal+".jpeg");
@@ -231,37 +236,28 @@ function displayActivityMap () {
 
 }
 
+function citySearchInput () {
+     cityInput = $("#citySearch").val().trim();
+    // converts the city input into a city code
 
 
-$(document).on("click", ".activity-btn", getActivity);
+    cityKey();
 
-$(document).on("click", "#cityButton", function(){
+    gate = 1;
 
-cityInput = $("#citySearch").val().trim();
-// converts the city input into a city code
-
-
-cityKey()
-
-gate = 1
-
-getActivity()
-
-
-
-});
-
+    getActivity();
+}
 
 function cityCode(a) {
 
-    city = a.data.places["0"].id
-        city = city.split(":")
-        city = city[1]
-        console.log(city)
+        city = a.data.places["0"].id
+            city = city.split(":")
+            city = city[1]
+            console.log(city)
 
-        return city
-        
-}
+            return city;
+            
+    }
 
 function cityKey() {
         $.ajax({
@@ -281,6 +277,18 @@ function cityKey() {
     })
         return city
 }
+
+
+$(document).on("click", "#start-search", startSearch);
+
+
+$(document).on("click", ".activity-btn", getActivity);
+
+
+$(document).on("click", "#cityButton", citySearchInput);
+
+
+    
 
 
 
