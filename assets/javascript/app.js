@@ -143,8 +143,7 @@ function getActivity () {
 
                 popupPic = pois[i].thumbnail_url;
 
-                popupContent = pois[i].name + "<img src=popupPic>";
-
+                popupContent = "<p class=center>" + pois[i].name + "</p>" + "<img alt='' width=100px src=" + popupPic + ">";
 
                 popupCity = pois[i].name_suffix;
 
