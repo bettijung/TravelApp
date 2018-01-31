@@ -133,46 +133,41 @@ img {
   }
 
 
-/*City Info Section ===========================*/
-/*========================================*/
-.city-info {
-  opacity: 0.9;
-  background-color: #E8E8E8;
-  margin: 5px 20px;
-  padding: 2px 5px;
-}
-  #wiki-header {
-    text-shadow: 2px 2px 3px grey;
-  }
-  #wiki-info {
-    margin: 10px; 
-  }
-
-
-/*Map Section ============================*/
+/*Map and City Info Section ==============*/
 /*========================================*/
 #map-card {
-  height: 800px;
-  padding-top: 0;
-  margin-top: 5px;
+  height: 850px;
+  padding-top: 10;
+  margin-top: 15px;
   margin-bottom: 5px;
   width: 100%;
   background-color: #E8E8E8;
 
 }
+  #wiki-header {
+    text-shadow: 2px 2px 3px grey;
+    padding-top: 5px;
+  }
+  .city-info {
+    opacity: 0.9;
+    background-color: #E8E8E8;
+  }
+    #wiki-info {
+      margin: 10px; 
+    }
   .map-header h4 {
     font-size: 20px;
     margin-top: 0px;
     margin-bottom: 0px;
     text-shadow: 1px 1px 2px grey;
   }
-  #map-id {
-    height: 724px;
-/*    width: 682px;*/
-    padding-left: 0;
-    padding-right: 0;
-    margin-right: 0;
-  }
+    #map-id {
+      height: 724px;
+  /*  width: 682px;*/
+      padding-left: 0;
+      padding-right: 0;
+      margin-right: 0;
+    }
 
 
 /*Footer =================================*/
