@@ -77,6 +77,7 @@ function getActivity () {
         var activityVal = $(this).attr("id").trim();
         var city = Math.floor(Math.random() * 10000) + 1;
 	   }
+    }
     console.log(city);
 	console.log(activityVal);
 
@@ -295,7 +296,7 @@ $(document).on("click", "#start-search", startSearch);
 $(document).on("click", ".activity-btn", getActivity);
 
 
-$(document).on("click", "#cityButton", citySearchInput);
+$(document).on("click", "#cityButton", citySearchInput)
 
 
     
