@@ -132,7 +132,6 @@ img {
     background-color: #E8E8E8;
   }
 
-
 /*Map and City Info Section ==============*/
 /*========================================*/
 #map-card {
@@ -151,6 +150,8 @@ img {
   .city-info {
     opacity: 0.9;
     background-color: #E8E8E8;
+    height: 800px;
+    overflow-y: scroll;
   }
     #wiki-info {
       margin: 10px; 
