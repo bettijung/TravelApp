@@ -126,7 +126,12 @@ console.log(gate)
 
                 // pois[i].id = pois[i].name;
 
-                popupContent = pois[i].name;
+                console.log(pois[i].thumbnail_url);
+
+                popupPic = pois[i].thumbnail_url;
+
+                popupContent = pois[i].name + "<img src=popupPic>";
+
 
                 popupCity = pois[i].name_suffix;
 
