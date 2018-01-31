@@ -140,6 +140,9 @@ img {
   background-color: #E8E8E8;
   margin: 5px 20px;
   padding: 2px 5px;
+  height: 800px;
+  overflow-y: scroll;
+
 }
   #wiki-header {
     text-shadow: 2px 2px 3px grey;
