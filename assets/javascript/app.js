@@ -159,49 +159,54 @@ function getActivity () {
 
             
 
-            // wikipedia ajax call
+        // wikipedia ajax call
         var cityName = pois["0"].name_suffix;
-        cityName = cityName.split(", ")
-        cityName = cityName[0]
-        console.log(cityName)
+        cityName = cityName.split(", ");
+        cityName = cityName[0];
+        console.log(cityName);
 
-        $.ajax({
-        type: "GET",
-        url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&redirects&prop=text&section=0&page="+cityName+"&callback=?",
-        contentType: "application/json; charset=utf-8",
-        async: false,
-        dataType: "json",
-        success: function (data, textStatus, jqXHR) {
-            
-            
+            $.ajax({
+            type: "GET",
+            url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&redirects&prop=text&section=0&page="+cityName+"&callback=?",
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            dataType: "json",
+                success: function (data, textStatus, jqXHR) {
+                    
+                    
 
-            var markup = data.parse.text["*"];
-            var blurb = $('<div></div>').html(markup);
- 
-            // remove links as they will not work
-            blurb.find('a').each(function() { $(this).replaceWith($(this).html()); });
-            blurb.find('img').each(function() { $(this).replaceWith($(this).html()); });
- 
-            // remove any references
-            blurb.find('sup').remove()
-                .find('img').remove()
-                .find('link').remove();
+                    var markup = data.parse.text["*"];
+                    var blurb = $('<div></div>').html(markup);
+         
+                    // remove links as they will not work
+                    blurb.find('a').each(function() { $(this).replaceWith($(this).html()); });
+                    blurb.find('img').each(function() { $(this).replaceWith($(this).html()); });
+         
+                    // remove any references
+                    blurb.find('sup').remove()
+                        .find('img').remove()
+                        .find('link').remove();
 
- 
-            // remove cite error
-            blurb.find('.mw-ext-cite-error').remove();
-            $('#wiki-info').html($(blurb).find('p'));
+         
+                    // remove cite error
+                    blurb.find('.mw-ext-cite-error').remove();
+                    $('#wiki-info').html($(blurb).find('p'));
 
-            //needs container with ID article
-           
- 
-        },
-        error: function (errorMessage) {
-        }
-    });
-        }
+                    //needs container with ID article
+                   
+         
+                },
+                error: function (errorMessage) {
+                }
+            });
 
-	})
+            $('html, body').animate({
+                scrollTop: $("#map-card").offset().top
+            }, 1000);
+    }
+
+
+})
 
 //Getting a (not ordered)cities list
 	$.ajax({
@@ -234,12 +239,12 @@ function displayActivityMap () {
 
     return actMap;
 
+
 }
 
 function citySearchInput () {
      cityInput = $("#citySearch").val().trim();
     // converts the city input into a city code
-
 
     cityKey();
 
