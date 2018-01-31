@@ -70,13 +70,14 @@ function getActivity () {
 
     } else {
 
-        if (gate2 === 1) {
-
+        /*if (gate2 === 1) {
+            gate2 = 0;
             var city = Math.floor(Math.random() * 10000) + 1;
-        } else {
+        } else {*/
         var activityVal = $(this).attr("id").trim();
         var city = Math.floor(Math.random() * 10000) + 1;
-	   }
+        gate2 = 0;
+	   
     }
     console.log(city);
 	console.log(activityVal);
@@ -95,11 +96,11 @@ function getActivity () {
             //creates an array with all of the points of interested (poi) objects within. Use pois[i].location to get coords
             const placesObj = response.data.places
             
-            if (response.data.places.length === 0) {
+            /*if (response.data.places.length === 0) {
                 gate2 = 1
                 console.log(response.data.places.length)
                 return getActivity ()
-            }
+            }*/
 
             var pois = [];
 
