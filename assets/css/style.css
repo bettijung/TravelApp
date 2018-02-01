@@ -31,10 +31,27 @@ img {
     transform: rotate(7deg);
   }
 
+/*Log In =================================*/
+/*========================================*/
+#modal1 {
+  background-color: #E8E8E8;
+  opacity: 0.9;
+}
+  .box1 {
+    margin-bottom: 0px;
+  }
+.modal-footer {
+  background-color: #E8E8E8;
+  opacity: 0.9;
+  top: -20px;
+}
+
 
 /*Nav Bar ================================*/
 /*========================================*/
-.navbar-fixed {
+nav {
+  z-index: 10;
+  background: inherit;
 }
   #logo-container {
     font-size: 25px;
@@ -47,6 +64,9 @@ img {
 /*Body Wrapper ===========================*/
 /*========================================*/
 .body-wrapper {
+  z-index: 5;
+  padding-top: 50px;
+  overflow: auto;
 }
 
 /*Title and Image Container =============*/
@@ -117,22 +137,41 @@ img {
 
   /*City Search Box ======================*/
   /*=====================================*/
-  .city-card {
+  .row .city-card {
     opacity: 0.9;
-    background-color: #E8E8E8;
-    float: ;
   }
+    .card .card-content.box4 {
+      padding: 15px;
+      padding-bottom: 0px;
+      padding-top: 10px;
+    }
+    .card .card-action.box5 {
+      padding: 5px;
+    }
+      .col.box9 {
+        align-content: center;
+      }    
+        .row.box7 {
+          margin-bottom: 10px;
+        }
+          .input-field.box8 {
+            margin-top: 0px;
+          }
 
 
 /*Activity Container =====================*/
 /*========================================*/
-.activity-container {
-  margin: 0px;
+.activity-container { 
 }
-  .activity-card {
-    opacity: 0.9;
-    background-color: #E8E8E8;
+  .row .col.s12.box3 {
+    padding: 0px;
   }
+    .activity-card {
+      opacity: 0.9;
+    }
+      .card-content.box6 {
+        padding-top: 10px;
+      }
 
 /*Map and City Info Section ==============*/
 /*========================================*/
