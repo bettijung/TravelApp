@@ -148,6 +148,8 @@ $(".googSubmit").on("click", function() {
 
       else {
 
+        $('#modal2').modal();
+
         console.log("No user is signed in.");
 
       }
