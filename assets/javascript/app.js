@@ -74,6 +74,9 @@
 // }
 
 //["0"].thumbnail_url
+// --------------------------------------------------------
+// Begin App
+// --------------------------------------------------------
 
 // Initialize Firebase
 var config = {
@@ -97,7 +100,7 @@ var gate = 0;
 var gate2 = 0;
 
 $(document).ready(function(){
-      
+    
     //modal trigger
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('#modal1').modal();
@@ -137,9 +140,7 @@ $(".googSubmit").on("click", function() {
             }
 
         console.log(uid);
-
         dbRef = dbRef + '/' + uid;
-
         console.log(dbRef);
 
         $(document).on("click", "#cityButton", citySearchInput)
@@ -147,14 +148,12 @@ $(".googSubmit").on("click", function() {
       }
 
       else {
-
         console.log("No user is signed in.");
-
       }
+    
+    });
 });
 
-
-});
 
 function startSearch () {
     $('html, body').animate({
@@ -169,15 +168,12 @@ function getActivity () {
     console.log(gate);
 
 	if (gate === 1) {
-
         city = cityKey();
         console.log(cityKey());
         console.log(city);
         var activityVal = "eating";
 
-
     } else {
-
         /*if (gate2 === 1) {
             gate2 = 0;
             var city = Math.floor(Math.random() * 10000) + 1;
@@ -185,14 +181,13 @@ function getActivity () {
         var activityVal = $(this).attr("id").trim();
         var city = Math.floor(Math.random() * 10000) + 1;
         gate2 = 0;
-	   
     }
+
     console.log(city);
 	console.log(activityVal);
 
     $("#img2").attr("src", "assets/images/"+activityVal+".jpeg");
     
-
 	$.ajax({
         url: 'https://api.sygictravelapi.com/1.0/en/places/list?parents=city:'+city+'&categories='+ activityVal +'&limit=20',
         beforeSend: function(xhr) {
@@ -219,7 +214,7 @@ function getActivity () {
 
             console.log(pois)
 
-           /* const actCoord = response.data.places["0"].location;
+            /* const actCoord = response.data.places["0"].location;
             console.log(actCoord)*/
             // placeholder for one poi coords
             latitude = pois[0].location.lat;
@@ -261,7 +256,6 @@ function getActivity () {
             }
 
             // console.log(pois[0].id);
-
             // $(".leaflet-pane").removeControl(".leaflet-zoom-anim", "leaflet-touch-zoom");
 
             $(".leaflet-popup-content").css("cursor", "pointer");    
@@ -270,8 +264,7 @@ function getActivity () {
                 console.log($(this).text());
                 window.open('http://google.com/search?q='+ $(this).text() + ", " + popupCity);   
             });
-
-            
+  
 
         // wikipedia ajax call
         var cityName = pois["0"].name_suffix;
@@ -300,7 +293,6 @@ function getActivity () {
                     blurb.find('sup').remove()
                         .find('img').remove()
                         .find('link').remove();
-
          
                     // remove cite error
                     blurb.find('.mw-ext-cite-error').remove();
@@ -320,7 +312,7 @@ function getActivity () {
         }
 
 
-    })
+    });
 
     //Getting a (not ordered)cities list
 	$.ajax({
@@ -332,7 +324,7 @@ function getActivity () {
             //process the JSON data etc
         }
 
-	})
+	});
 
 }
 
