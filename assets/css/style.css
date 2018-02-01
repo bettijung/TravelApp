@@ -181,36 +181,47 @@ nav {
   padding-top: 10;
   margin-top: 15px;
   margin-bottom: 5px;
-  width: 100%;
+  width: 97%;
   background-color: #E8E8E8;
   opacity: 0.9;
-
+  border-style: solid;
+  border-color: black;
+  border-width: 2.2px;
 }
   #wiki-header {
     text-shadow: 2px 2px 3px grey;
     padding-top: 5px;
-    background-color: white;
+    /*background-color: white;*/
   }
   .city-info {
-    
+    background-color: white;
     height: 724px;
     overflow-y: scroll;
+    border-style: solid;
+    border-color: gray;
+    border-width: 1px;
+    box-shadow: 2px 2px 2px gray;
   }
     #wiki-info {
       margin: 10px; 
     }
-  .map-header h4 {
-    font-size: 20px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    text-shadow: 1px 1px 2px grey;
+  .col.map-header {
+    padding-right: 0px;
   }
+    .map-header h4 {
+      font-size: 20px;
+      font-style: tahoma;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      /*text-shadow: 1px 1px 2px grey;*/
+      z-index: 10;
+    }
     #map-id {
-      height: 724px;
-  /*  width: 682px;*/
+      height: 703px;
       padding-left: 0;
       padding-right: 0;
       margin-right: 0;
+      z-index: 5;
     }
 
 
