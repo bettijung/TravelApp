@@ -148,6 +148,8 @@ $(".googSubmit").on("click", function() {
 
       else {
 
+        $('#modal2').modal();
+
         console.log("No user is signed in.");
 
       }
@@ -354,6 +356,9 @@ function displayActivityMap () {
 }
 
 function citySearchInput() {
+
+    console.log(dbRef);
+    
     cityInput = $("#citySearch").val().trim();
     
     // converts the city input into a city code
