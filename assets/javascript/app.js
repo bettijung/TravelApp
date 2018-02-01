@@ -94,13 +94,14 @@ let dbRef = firebase.database().ref('TravelerInputs/users');
 
 var city = null;
 var gate = 0;
-var gate2 = 0;
+
 
 $(document).ready(function(){
       
     //modal trigger
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('#modal1').modal();
+    $("#map-card").hide()
 
 });
 
@@ -166,7 +167,7 @@ function startSearch () {
 
 
 function getActivity () {
-
+    $("#map-card").show()
 	event.preventDefault();
     console.log(gate);
 
@@ -189,6 +190,11 @@ function getActivity () {
         gate2 = 0;
 	   
     }
+   
+   
+            
+
+    
     console.log(city);
 	console.log(activityVal);
 
