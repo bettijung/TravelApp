@@ -97,13 +97,14 @@ let dbRef = firebase.database().ref('TravelerInputs/users');
 
 var city = null;
 var gate = 0;
-var gate2 = 0;
+
 
 $(document).ready(function(){
     
     //modal trigger
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('#modal1').modal();
+    $("#map-card").hide()
 
 });
 
@@ -148,6 +149,10 @@ $(".googSubmit").on("click", function() {
       }
 
       else {
+
+
+        $('#modal2').modal();
+
         console.log("No user is signed in.");
       }
     
@@ -163,7 +168,7 @@ function startSearch () {
 
 
 function getActivity () {
-
+    $("#map-card").show()
 	event.preventDefault();
     console.log(gate);
 
@@ -179,7 +184,7 @@ function getActivity () {
             var city = Math.floor(Math.random() * 10000) + 1;
         } else {*/
         var activityVal = $(this).attr("id").trim();
-        var city = Math.floor(Math.random() * 10000) + 1;
+        var city = Math.floor(Math.random() * 1000) + 1;
         gate2 = 0;
     }
 
@@ -346,6 +351,9 @@ function displayActivityMap () {
 }
 
 function citySearchInput() {
+
+    console.log(dbRef);
+    
     cityInput = $("#citySearch").val().trim();
     
     // converts the city input into a city code
