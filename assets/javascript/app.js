@@ -185,7 +185,7 @@ function getActivity () {
             var city = Math.floor(Math.random() * 10000) + 1;
         } else {*/
         var activityVal = $(this).attr("id").trim();
-        var city = Math.floor(Math.random() * 10000) + 1;
+        var city = Math.floor(Math.random() * 1000) + 1;
         gate2 = 0;
 	   
     }
