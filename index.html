@@ -8,16 +8,21 @@
 	<title>Travel App</title>
 	
 	<!-- Style Links -->
-	
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
-  	integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
-  	crossorigin=""/>
-  	<link href='https://api.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<!-- Google Maps -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!-- LeafLet -->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+	  	integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+	  	crossorigin=""/>
+	  	<!-- MapBox -->
+	  	<link href='https://api.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
+	  	<!-- Materialize -->
+	  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+		<!-- Personal Stylsheet -->
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-	<!-- Firebase Reference -->
-	<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+		<!-- Firebase Reference -->
+		<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 
 </head>
 
@@ -30,7 +35,7 @@
 	<div id="modal1" class="modal">
     <div class="modal-content">
       	<h4>Log-in using Gmail</h4>
-      	<div class="row">
+      	<div class="row box1">
 	        <form class="col s12">
 	          	<div class="row modal-form-row">
 		            <div class="input-field col s12">
@@ -48,7 +53,7 @@
       	</div>
     </div>
     <div class="modal-footer">
-      	<a class="googSubmit modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+      	<a class="googSubmit modal-action modal-close waves-effect waves-light btn">Submit</a>
     </div>
   </div>
 
@@ -66,7 +71,8 @@
   	</div>
 	
 	<!-- Nav Bar -->
-	<nav class="navbar-fixed">
+	<div class="navbar-fixed">
+		<nav class="transparent">
 	    <div class="nav-wrapper">
 	        <a id="logo-container" href="#" class="brand-logo"><i class="large material-icons">directions_bike</i>TravelMe.com</a>
 	        <ul class="right darken-4">
@@ -74,8 +80,13 @@
 	            <li><a href="#modal1" class="waves-effect waves-light nav-bar-btn modal-trigger" id="log-in">Log In</a></li>
 	        </ul>
 	    </div>
-	</nav>
-	
+		</nav>
+	</div>	
+
+
+<!-- Body Wrapper -->
+<div class="body-wrapper">
+
 	<!-- Title Area -->
 	<div id="index-banner" class="parallax-container cont1">
 		
@@ -92,21 +103,23 @@
 
 				<!-- City Search Box -->
 				<div class="row">
-			        <div class="col s12 l8 card city-card">
-			            <div class="card-content grey-text">
-			            	<span class="card-title center">Search a City</span>
-			            	<div class="card-action">
-			            		<form class="col s12">
-								    <div class="row">
-								        <div class="input-field col s12">
-									        <input placeholder="City" id="citySearch" type="text" class="validate">
-									        <a href="#modal2" id="cityButton" class="waves-effect waves-light btn red right">Search</a>
-								        </div>
-								    </div>
-							    </form>
-			            	</div>
-			            </div>
-			        </div>
+				    <div class="col s2 city"></div>
+				        <div class="col s8 l8 card city-card center">
+				            <div class="card-content grey-text">
+				                <span class="card-title center">Search a City</span>
+				                <div class="card-action">
+				                    <form class="col s12">
+				                        <div class="row">
+				                            <div class="input-field col s12">
+				                                <input placeholder="City" id="citySearch" type="text" class="validate">
+				                                <a id="cityButton" class="waves-effect waves-light btn red right">Search</a>
+				                            </div>
+				                        </div>
+				                    </form>
+				                </div>
+				            </div>
+				        </div>
+				    <div class="col s2"></div>
 				</div>
 				
 			</div>		
@@ -121,12 +134,12 @@
 
 	<!-- Activity Form -->
     <div class="container activity-container">
-    	<div class="section">
+    	<div class="section section1">
     		
     		<div class="row">
-		        <div class="col s12">
+		        <div class="col center s12 box3">
 			        <div class="card center activity-card">
-			            <div class="card-content grey-text">
+			            <div class="card-content grey-text box6">
 			              	<span class="card-title">Choose your favorite activity</span>
 			              	<div class="card-action">
         						<a class="btn waves-effect waves-light activity-btn" id="discovering">Discovering</i></a>
@@ -182,14 +195,31 @@
 	    </div>
     	
 	</div>
-	
+
+<!-- End Body Wrapper -->
+</div> 
+
 <!-- Footer -->
 <footer class="page-footer teal">
     <div class="container">
-	    <div class="row">
+	    <div class="row box10">
 	        <div class="col l12 s12">
-		         <h5 class="white-text">Company Bio</h5>
-		         <p class="grey-text text-lighten-4">We are a team of students working on this project. Any amount would help support this project and is greatly appreciated.</p>
+		        <h5 class="white-text center">Creators</h5>
+		            <p class="grey-text text-lighten-4 center">Find us on GitHub at:</p>
+		            <div class="contact-us center">
+			            <div class="chip teal lighten-2">
+						    <img src="assets/images/31292513.jpeg" alt="Contact Person"> <a href="https://github.com/tgiachett" target="_blank">Tobia Giachetti </a>  
+						</div>
+			            <div class="chip teal lighten-2">
+						    <img src="assets/images/IMG_2609.JPG" alt="Contact Person"> <a href="https://github.com/bettijung" target="_blank">Bettina Junghahn</a>  
+						</div>
+						<div class="chip teal lighten-2">
+						    <img src="assets/images/PP.jpg" alt="Contact Person"> <a href="https://github.com/paulaperoutka" target="_blank">Paula Peroutka</a>  
+						</div>
+						<div class="chip teal lighten-2">
+						    <img src="assets/images/31479105.jpeg" alt="Contact Person"> <a href="https://github.com/MartyFromCary" target="_blank">Elias Martinez</a>  
+						</div>
+					</div>	
 	        </div>
 	    </div>
 	</div>
@@ -200,20 +230,19 @@
     </div>
 </footer>
 
+
 <!-- Javascipt Links-->
-	
-<!-- jQuery -->
+	<!-- jQuery -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Leaflet.js -->
+	<!-- Leaflet.js -->
 	<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
   	integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
   	crossorigin=""></script>
-<!-- Mapbox -->
-  <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
-<!-- Materialize  -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	<!-- Mapbox -->
+  	<script src='https://api.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
+	<!-- Materialize  -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<!-- App JS file -->
+	<!-- App JS file -->
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 
 </body>

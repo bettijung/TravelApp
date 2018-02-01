@@ -3,7 +3,6 @@
 /*General Styling ========================*/
 /*========================================*/
 body {
-  background-color: #303030;
   padding-left: 0;
   padding-right: 0;
   margin-left: 0;
@@ -32,15 +31,29 @@ img {
     transform: rotate(7deg);
   }
 
+/*Log In =================================*/
+/*========================================*/
+#modal1 {
+  background-color: #E8E8E8;
+  opacity: 0.9;
+}
+  .box1 {
+    margin-bottom: 0px;
+  }
+.modal-footer {
+  background-color: #E8E8E8;
+  opacity: 0.9;
+  top: -20px;
+}
+
 
 /*Nav Bar ================================*/
 /*========================================*/
-.navbar-fixed {
-  background-color: transparent;
+nav {
+  z-index: 10;
+  background: inherit;
 }
   #logo-container {
-  /*  background-color: white;
-    opacity: 0.5;*/
     font-size: 25px;
     text-shadow: 1px 1px 2px #303030;
   }
@@ -48,6 +61,13 @@ img {
     font-size: 18px;
   }
 
+/*Body Wrapper ===========================*/
+/*========================================*/
+.body-wrapper {
+  z-index: 5;
+  padding-top: 50px;
+  overflow: auto;
+}
 
 /*Title and Image Container =============*/
 /*========================================*/
@@ -93,11 +113,13 @@ img {
   /*=====================================*/
   .imgdiv1 {
     height: 10px;
+    z-index: -1;
+    top: 0;
+    left:0;
   }
     #img1  {
       height: 100%;
       position: fixed;
-      /*opacity: 0.8;*/
      }
 
   /*Title Area ==========================*/
@@ -115,22 +137,42 @@ img {
 
   /*City Search Box ======================*/
   /*=====================================*/
-  .city-card {
+  .row .col.card.city-card {
     opacity: 0.9;
-    background-color: #E8E8E8;
-    
+
   }
+    .card .card-content.box4 {
+      padding: 15px;
+      padding-bottom: 0px;
+      padding-top: 10px;
+    }
+    .card .card-action.box5 {
+      padding: 5px;
+    }
+      .col.box9 {
+        align-content: center;
+      }    
+        .row.box7 {
+          margin-bottom: 10px;
+        }
+          .input-field.box8 {
+            margin-top: 0px;
+          }
 
 
 /*Activity Container =====================*/
 /*========================================*/
-.activity-container {
-  margin-top: 0px;
+.activity-container { 
 }
-  .activity-card {
-    opacity: 0.9;
-    background-color: #E8E8E8;
+  .row .col.s12.box3 {
+    padding: 0px;
   }
+    .activity-card {
+      opacity: 0.9;
+    }
+      .card-content.box6 {
+        padding-top: 10px;
+      }
 
 /*Map and City Info Section ==============*/
 /*========================================*/
@@ -141,15 +183,16 @@ img {
   margin-bottom: 5px;
   width: 100%;
   background-color: #E8E8E8;
+  opacity: 0.9;
 
 }
   #wiki-header {
     text-shadow: 2px 2px 3px grey;
     padding-top: 5px;
+    background-color: white;
   }
   .city-info {
-    opacity: 0.9;
-    background-color: #E8E8E8;
+    
     height: 724px;
     overflow-y: scroll;
   }
@@ -176,7 +219,32 @@ img {
 footer.page-footer {
   margin: 0;
   margin-top: 20px;
+  padding-top: 0px;
 }
+  .row.box10 {
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+  }
+    footer .contact-us {
+
+    }
+  footer h5 {
+    margin-bottom: 0px;
+  }
+  footer.page-footer .footer-copyright {
+    padding: 0px;
+  }
+  footer p {
+    margin: 2px;
+  }
+  .chip a {
+    color: white;
+  }
+    .chip a:hover {
+      font-weight: bold;
+      color: #00FFFF;
+      padding: 5px;
+    }
 
 
 /******************************************/
