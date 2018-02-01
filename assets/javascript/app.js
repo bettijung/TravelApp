@@ -354,6 +354,9 @@ function displayActivityMap () {
 }
 
 function citySearchInput() {
+
+    console.log(dbRef);
+    
     cityInput = $("#citySearch").val().trim();
     
     // converts the city input into a city code
