@@ -97,10 +97,20 @@ var gate = 0;
 var gate2 = 0;
 
 $(document).ready(function(){
-      
     //modal trigger
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('#modal1').modal();
+
+
+});
+
+$(document).on("click", "#cityButton", function () {
+
+    console.log("No user.");
+    $("#modal2").modal();
+
+    // remove href on user login!!!!!????
+    // $("#cityButton").attr("href", "#modal2");
 
 });
 
@@ -142,13 +152,11 @@ $(".googSubmit").on("click", function() {
 
         console.log(dbRef);
 
-        $(document).on("click", "#cityButton", citySearchInput)
+        // $(document).on("click", "#cityButton", citySearchInput);
 
       }
 
       else {
-
-        $('#modal2').modal();
 
         console.log("No user is signed in.");
 
@@ -178,7 +186,9 @@ function getActivity () {
         var activityVal = "eating";
 
 
-    } else {
+    } 
+
+    else {
 
         /*if (gate2 === 1) {
             gate2 = 0;
@@ -412,7 +422,8 @@ $(document).on("click", "#start-search", startSearch);
 $(document).on("click", ".activity-btn", getActivity);
 
 
-// $(document).on("click", "#cityButton", citySearchInput)
+// $(document).on("click", "#cityButton", citySearchInput);
+
 
 
     
