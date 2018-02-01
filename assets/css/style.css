@@ -137,8 +137,9 @@ nav {
 
   /*City Search Box ======================*/
   /*=====================================*/
-  .row .city-card {
+  .row .col.card.city-card {
     opacity: 0.9;
+
   }
     .card .card-content.box4 {
       padding: 15px;
@@ -242,6 +243,7 @@ footer.page-footer {
     .chip a:hover {
       font-weight: bold;
       color: #00FFFF;
+      padding: 5px;
     }
 
 
