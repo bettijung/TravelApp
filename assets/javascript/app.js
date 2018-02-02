@@ -159,32 +159,22 @@ $(".googSubmit").on("click", function() {
     firebase.auth().onAuthStateChanged(function(user) {
 
       if (user) {
-
         var user = firebase.auth().currentUser;
         var email, uid;
         // emailVerified
-
             if (user != null) {
               // name = user.displayName;
               email = user.email;
               // emailVerified = user.emailVerified;
               uid = user.uid;
             }
-
-        console.log(uid);
-        
-        dbRef.push(uid);
-
+        // console.log(uid);
+        // dbRef.push(uid);
         // console.log(dbRef);
-
         $(".save").on("click", function () {
-
             saveSearch();
-
         });
-
       }
-
       else {
         // $('#modal2').modal();
         console.log("No user is signed in.");
@@ -310,7 +300,7 @@ function getActivity () {
 
                         }   */
                 
-              console.log(pois[i].thumbnail_url);
+                console.log(pois[i].thumbnail_url);
 
                 let popupPic;
 
@@ -321,9 +311,6 @@ function getActivity () {
                 else {
                     popupPic = "assets/images/tourism.png";
                 }
-
-
-                popupPic = pois[i].thumbnail_url;
 
                 popupContent = "<p class=center>" + pois[i].name + "</p>" + "<img alt='' width=100px src=" + popupPic + /*"rating" + myCircle + */">";
 
@@ -356,7 +343,7 @@ function getActivity () {
 
             $.ajax({
             type: "GET",
-            url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&redirects&prop=text&section=0&page="+cityName+"&callback=?",
+            url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&redirects&prop=text&section=0&page="+ cityName +"&callback=?",
             contentType: "application/json; charset=utf-8",
             async: false,
             dataType: "json",
@@ -380,7 +367,6 @@ function getActivity () {
 
                     //needs container with ID article
                    
-         
                 },
                 error: function (errorMessage) {
                 }
@@ -437,9 +423,7 @@ function citySearchInput() {
     resetQuote();
     
     cityInput = $("#citySearch").val().trim();
-    
     // converts the city input into a city code
-    
     gate = 1;
 
     $('html, body').animate({
@@ -471,6 +455,8 @@ function getCityKey(searchLocality) {
 function saveSearch () {
 
     console.log(dbRef);
+
+    dbRef.push();
 
 }
 
