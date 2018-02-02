@@ -112,7 +112,7 @@ $(document).ready(function(){
     $('#modal1').modal();
     $("#map-card").hide();
     $(".save-button").hide();
-    $("#quotes").hide();
+    $("#quote-scroll").hide();
     resetQuote();
 
     // console.log(quotesArray);
@@ -246,8 +246,8 @@ function getActivity () {
     quote = getQuote();
     console.log(quote);
     $("#quotes").val("");
-    $("#quotes").prepend(quote);
-    $("#quotes").show();
+    $("#quotes").append(quote);
+    $("#quote-scroll").show();
 
     $("#map-card").show()
 	event.preventDefault();
@@ -515,7 +515,7 @@ function getQuote () {
 }
 
 function resetQuote () {
-    $("#quotes").html("Scroll down to see your results:");
+    $("#quotes").html("");
 }
 
 
