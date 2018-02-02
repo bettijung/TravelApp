@@ -20,11 +20,10 @@
 	  	<link href='https://api.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
 	  	<!-- Materialize -->
 	  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+			<!-- Google fonts -->
+	  	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Shadows+Into+Light+Two|Waiting+for+the+Sunrise" rel="stylesheet">
 		<!-- Personal Stylsheet -->
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-		<!-- Firebase Reference -->
-		<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 
 </head>
 
@@ -191,9 +190,11 @@
 
 			<div class="row center" id="wiki-header">
 				<h4>More Info About The City</h4>
+				<!-- Keep this dic separate for the save this city button -->
 				<div class="save-search">
-					<a class="btn waves-effect waves-light red save-button" id="saveSearch">Save this Search</i></a>
+					<a class="btn waves-effect waves-light red save-button" id="saveSearch">Save this City</a>
 				</div>
+				<!-- Keep this div separate for the saved city buttons -->
 				<div class="saved-searches"></div>
 			</div>
 		    <div class="row center">
@@ -255,12 +256,14 @@
   	integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
   	crossorigin=""></script>
 	<!-- Mapbox -->
-  	<script src='https://api.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
 	<!-- Materialize  -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+	<!-- Firebase Reference -->
+	<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 	<!-- Quotes JS -->
 	<script type="text/javascript" src="assets/javascript/quotes.js"></script>
-
 	<!-- App JS file -->
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 
