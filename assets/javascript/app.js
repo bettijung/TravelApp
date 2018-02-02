@@ -261,17 +261,17 @@ function getActivity () {
         var activityVal = "eating";
 
     } else {
-        /*if (gate2 === 1) {
-            gate2 = 0;
-            var city = Math.floor(Math.random() * 10000) + 1;
-        } else {*/
+       
         var activityVal = $(this).attr("id").trim();
-        var city = Math.floor(Math.random() * 1000) + 1;
-        gate2 = 0;
-    }
+        let randomIndex = Math.floor(Math.random() * SigicCities.length);
+        console.log(`randomIndex: ${randomIndex}`);
+        let randomCity = SigicCities[randomIndex][0];
+        console.log(`randomCity: ${randomCity}`);
+        city = randomCity
 
-    console.log(city);
-	console.log(activityVal);
+        
+
+    
 
     $("#img2").attr("src", "assets/images/"+ activityVal +".jpeg");
     
