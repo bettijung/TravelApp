@@ -164,10 +164,11 @@ nav {
       background-color: #FFF5EE;
       opacity: 0.70;
       margin-top: 48px;
-      padding: 24px 14px;
+      padding: 15px 0px;
       border-radius: 3px;
-      font-family: 'Waiting for the Sunrise', cursive;
-      font-size: 30px;
+      font-weight: 200;
+      font-family: "Roboto", sans serif;
+      font-size: 25px;
     }
 
 /*Activity Container =====================*/
@@ -234,7 +235,8 @@ nav {
     #wiki-header h4 {
       margin-top: 2px;
       margin-bottom: 2px;
-      font-weight: thin;
+      font-weight: 200;
+      font-family: "Roboto", sans serif;
     }
   .city-info {
     background-color: white;
