@@ -90,10 +90,13 @@ var config = {
 
 firebase.initializeApp(config);
 
-let dbRef = firebase.database().ref('TravelerInputs/users');
+const newSave = {};
+
+let dbRef = firebase.database().ref('TravelerInputs/cities');
 
 // =========================================================
 let actMap;
+let savedCity;
 
 const sigicURLBase = "https://api.sygictravelapi.com/1.0/en/places/list?"
 var city = null;
@@ -108,7 +111,7 @@ $(document).ready(function(){
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('#modal1').modal();
     $("#map-card").hide();
-    $(".save").hide();
+    $(".save-button").hide();
     $("#quotes").hide();
     resetQuote();
 
@@ -142,7 +145,7 @@ $(".googSubmit").on("click", function() {
 
         $("#log-in").html("Switch User");
 
-        $(".save").show();
+        $(".save-button").show();
 
         firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
@@ -158,28 +161,56 @@ $(".googSubmit").on("click", function() {
 
     firebase.auth().onAuthStateChanged(function(user) {
 
-      if (user) {
-        var user = firebase.auth().currentUser;
-        var email, uid;
-        // emailVerified
+        if (user) {
+            var user = firebase.auth().currentUser;
+            var email, uid;
+            // emailVerified
+
             if (user != null) {
-              // name = user.displayName;
-              email = user.email;
-              // emailVerified = user.emailVerified;
-              uid = user.uid;
+                // name = user.displayName;
+                email = user.email;
+                // emailVerified = user.emailVerified;
+                uid = user.uid;   
+
+                $(".save-button").on("click", function () {
+
+                    event.preventDefault();
+
+                    console.log(savedCity);
+                    
+                    const newSave = {
+                        name: savedCity
+                    }
+
+                    dbRef.push(newSave);
+
+                });
+
+                dbRef.on("child_added", function(childSnapshot, prevChildKey) {
+
+                    const newSave = childSnapshot.val();
+
+                    $(".saved-searches").append(createButtons(newSave));
+                }, 
+
+                function(errorObject) {
+                    console.log("Errors handled; " + errorObject.code);
+                });
+
+                function createButtons(cities) {
+                    const savedButtons = $(".saved-searches");
+                    savedButtons.append("<btn>" + cities.name + "</btn>");
+                    $(this).addClass("waves-effect waves-light saved-city-btn");
+                    return savedButtons;
+                }
             }
-        // console.log(uid);
-        // dbRef.push(uid);
-        // console.log(dbRef);
-        $(".save").on("click", function () {
-            saveSearch();
-        });
-      }
-      else {
-        // $('#modal2').modal();
-        console.log("No user is signed in.");
-      }
+
+            else {
+            // $('#modal2').modal();
+            console.log("No user is signed in.");
+            }
     
+        }    
     });
 });
 
@@ -224,10 +255,10 @@ function getActivity () {
     console.log(city);
 	console.log(activityVal);
 
-    $("#img2").attr("src", "assets/images/"+activityVal+".jpeg");
+    $("#img2").attr("src", "assets/images/"+ activityVal +".jpeg");
     
 	$.ajax({
-        url: 'https://api.sygictravelapi.com/1.0/en/places/list?parents=city:'+city+'&categories='+ activityVal +'&limit=20',
+        url: 'https://api.sygictravelapi.com/1.0/en/places/list?parents=city:'+ city +'&categories='+ activityVal +'&limit=20',
         beforeSend: function(xhr) {
              xhr.setRequestHeader("x-api-key", sigicApiKey)
         }, success: function(response){
@@ -236,6 +267,7 @@ function getActivity () {
             
             //creates an array with all of the points of interested (poi) objects within. Use pois[i].location to get coords
             const placesObj = response.data.places
+
             
             /*if (response.data.places.length === 0) {
                 gate2 = 1
@@ -261,9 +293,7 @@ function getActivity () {
             console.log(longitude);
 
             let markerMap = displayActivityMap();
-
             let popupContent;
-
             let popupCity;
 
             //creates marker for each poi
@@ -301,6 +331,10 @@ function getActivity () {
                         }   */
                 
                 console.log(pois[i].thumbnail_url);
+                console.log(pois[i].name);
+
+                savedCity = pois[i].name_suffix;
+                console.log(savedCity);
 
                 let popupPic;
 
@@ -398,9 +432,7 @@ function getActivity () {
 function displayActivityMap () {
     
     if (actMap != undefined) {
-
         actMap.remove();
-
     }
 
     actMap = L.map("map-id").setView([latitude, longitude], 13);
@@ -423,6 +455,9 @@ function citySearchInput() {
     resetQuote();
     
     cityInput = $("#citySearch").val().trim();
+
+    savedCity = $("#citySearch").val().trim();
+    console.log(savedCity);
     // converts the city input into a city code
     gate = 1;
 
@@ -450,14 +485,6 @@ function getCityKey(searchLocality) {
         City = JSON.parse(request.responseText).data.places[0].id.split(":")[1];
     }
     return City;
-}
-
-function saveSearch () {
-
-    console.log(dbRef);
-
-    dbRef.push();
-
 }
 
 function getQuote () {
