@@ -200,7 +200,7 @@ $(".googSubmit").on("click", function() {
                 function createButtons(cities) {
                     const savedButtons = $(".saved-searches");
                     savedButtons.append("<btn>" + cities.name + "</btn>");
-                    // $(this).addClass("waves-effect waves-light saved-city-btn");
+                    $(this).addClass("waves-effect waves-light saved-city-btn");
                     return savedButtons;
                 }
             }

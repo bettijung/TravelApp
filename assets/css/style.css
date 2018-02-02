@@ -71,7 +71,7 @@ nav {
 }
 
 /*Title and Image Container =============*/
-/*========================================*/
+/*=======================================*/
 .parallax-container.cont1 {
   min-height: 250px;
   line-height: 0;
@@ -144,6 +144,20 @@ nav {
       opacity: 0.9;
     }
 
+  /*Image on Page =======================*/
+  /*=====================================*/
+  .parallax-container.img-box1 {
+    height: 450px;
+  }
+    /*Quotes ============================*/
+    /*===================================*/
+    .header.image-text#quotes {
+      background-color: #FFF5EE;
+      opacity: 0.70;
+      margin-top: 48px;
+      padding: 24px 14px;
+      border-radius: 3px;
+    }
 
 /*Activity Container =====================*/
 /*========================================*/
@@ -164,7 +178,7 @@ nav {
 
 
 /*City Search Box ======================*/
-/*=====================================*/
+/*======================================*/
 .row .col.card.city-card {
   opacity: 0.9;
 }
@@ -186,15 +200,6 @@ nav {
           margin-top: 0px;
         }
 
-/*Quotes ======================*/
-/*=====================================*/
-#quotes {
-  background-color: white;
-  opacity: 0.75;
-  margin-top: 48px;
-  padding: 24px 14px;
-  border-radius: 3px;
-}
 
 /*Map and City Info Section ==============*/
 /*========================================*/
@@ -213,7 +218,13 @@ nav {
   #wiki-header {
     text-shadow: 2px 2px 3px grey;
     padding-top: 5px;
+    margin-bottom: 15px;
   }
+    #wiki-header h4 {
+      margin-top: 2px;
+      margin-bottom: 2px;
+      font-weight: thin;
+    }
   .city-info {
     background-color: white;
     height: 724px;
@@ -234,7 +245,7 @@ nav {
       z-index: 10;
     }
     #map-id {
-      height: 703px;
+      height: 701px;
       padding-left: 0;
       padding-right: 0;
       margin-right: 0;
