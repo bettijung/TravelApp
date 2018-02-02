@@ -106,9 +106,24 @@ $(document).ready(function(){
     //modal trigger
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('#modal1').modal();
-    $("#map-card").hide()
+    $("#map-card").hide();
+
+//Change the navbar color on scrolling
+  $(window).scroll(function() { 
+    if ($(document).scrollTop() > 50) {
+      $("nav").css({
+        background: "white",
+        opacity: 0.90,
+      });
+    } 
+    else {
+      $("nav").css("background-color", "transparent");
+    }
+  });
 
 });
+
+
 
 $(".googSubmit").on("click", function() {
 
@@ -396,6 +411,10 @@ function getCityKey(searchLocality) {
     return City;
 }
 
+function saveSearch () {
+
+}
+
 
 $(document).on("click", "#start-search", startSearch);
 
@@ -403,7 +422,9 @@ $(document).on("click", "#start-search", startSearch);
 $(document).on("click", ".activity-btn", getActivity);
 
 
-// $(document).on("click", "#cityButton", citySearchInput)
+$(document).on("click", "#cityButton", citySearchInput)
+
+
 
 
     
