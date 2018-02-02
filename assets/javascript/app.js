@@ -97,6 +97,7 @@ let actMap
 const sigicURLBase = "https://api.sygictravelapi.com/1.0/en/places/list?"
 var city = null;
 var gate = 0;
+
 let cityInput = null
 const sigicApiKey = "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq"
 
