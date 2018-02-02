@@ -286,9 +286,31 @@ function getActivity () {
                     popupAnchor: [-3, -76],
                 });
 
-                // pois[i].id = pois[i].name;
+                /*let poisRating = pois[i].rating
+                console.log(poisRating)
+                let ratingRadius = poisRating * 10*/
+                
+               /* <svg id="mySVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+                let svgCont = $("<svg>")
+                svgCont.attr({
+                                target:"nw", 
+                                title:"Opens in a new window"
+                            });*/
+               /* let svgNS = "http://www.w3.org/2000/svg";  
+                let myCircle
+                        function createCircle()
+                        {
+                            var myCircle = document.createElementNS(svgNS,"circle"); //to create a circle. for rectangle use "rectangle"
+                            myCircle.setAttributeNS(null,"id","mycircle");
+                            myCircle.setAttributeNS(null,"cx",100);
+                            myCircle.setAttributeNS(null,"cy",100);
+                            myCircle.setAttributeNS(null,"r",ratingRadius);
+                            myCircle.setAttributeNS(null,"fill","black");
+                            myCircle.setAttributeNS(null,"stroke","none");
 
-                console.log(pois[i].thumbnail_url);
+                        }   */
+                
+              console.log(pois[i].thumbnail_url);
 
                 let popupPic;
 
@@ -300,7 +322,10 @@ function getActivity () {
                     popupPic = "assets/images/tourism.png";
                 }
 
-                popupContent = "<p class=center>" + pois[i].name + "</p>" + "<img alt='' width=100px src=" + popupPic + ">";
+
+                popupPic = pois[i].thumbnail_url;
+
+                popupContent = "<p class=center>" + pois[i].name + "</p>" + "<img alt='' width=100px src=" + popupPic + /*"rating" + myCircle + */">";
 
                 popupCity = pois[i].name_suffix;
 
