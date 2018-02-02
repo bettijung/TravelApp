@@ -253,9 +253,32 @@ function getActivity () {
 
                 console.log(pois[i].thumbnail_url);
 
+                poiRating = pois[i].rating
+                ratingRadius = poisRating * 30
+                
+                
+
+                let svgNS = "http://www.w3.org/2000/svg";  
+                let myCircle
+                        function createCircle()
+                        {
+                            var myCircle = document.createElementNS(svgNS,"circle"); //to create a circle. for rectangle use "rectangle"
+                            myCircle.setAttributeNS(null,"id","mycircle");
+                            myCircle.setAttributeNS(null,"cx",100);
+                            myCircle.setAttributeNS(null,"cy",100);
+                            myCircle.setAttributeNS(null,"r",ratingRadius);
+                            myCircle.setAttributeNS(null,"fill","black");
+                            myCircle.setAttributeNS(null,"stroke","none");
+
+                        }   
+                
+
+
+
+
                 popupPic = pois[i].thumbnail_url;
 
-                popupContent = "<p class=center>" + pois[i].name + "</p>" + "<img alt='' width=100px src=" + popupPic + ">";
+                popupContent = "<p class=center>" + pois[i].name + "</p>" + "<img alt='' width=100px src=" + popupPic + "rating" + myCircle + ">";
 
                 popupCity = pois[i].name_suffix;
 
