@@ -94,10 +94,11 @@ let dbRef = firebase.database().ref('TravelerInputs/users');
 
 // =========================================================
 
-
+const sigicURLBase = "https://api.sygictravelapi.com/1.0/en/places/list?"
 var city = null;
 var gate = 0;
-
+let cityInput = null
+const sigicApiKey = "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq"
 
 $(document).ready(function(){
     
@@ -173,8 +174,8 @@ function getActivity () {
     console.log(gate);
 
 	if (gate === 1) {
-        city = cityKey();
-        console.log(cityKey());
+        city = getCityKey(cityInput);
+        console.log(getCityKey(cityInput));
         console.log(city);
         var activityVal = "eating";
 
@@ -196,7 +197,7 @@ function getActivity () {
 	$.ajax({
         url: 'https://api.sygictravelapi.com/1.0/en/places/list?parents=city:'+city+'&categories='+ activityVal +'&limit=20',
         beforeSend: function(xhr) {
-             xhr.setRequestHeader("x-api-key", "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq")
+             xhr.setRequestHeader("x-api-key", sigicApiKey)
         }, success: function(response){
             console.log(response);
             //process the JSON data etc
@@ -357,7 +358,7 @@ function citySearchInput() {
     cityInput = $("#citySearch").val().trim();
     
     // converts the city input into a city code
-    cityKey();
+    
 
     gate = 1;
 
@@ -369,35 +370,22 @@ function citySearchInput() {
 
 }
 
-function cityCode(a) {
-
-    city = a.data.places["0"].id;
-    city = city.split(":");
-    city = city[1];
-    console.log(city);
-
-    return city;
-            
-}
-
-function cityKey() {
-    $.ajax({
-    url: 'https://api.sygictravelapi.com/1.0/en/places/list?query='+ cityInput,
-    beforeSend: function(xhr) {
-         xhr.setRequestHeader("x-api-key", "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq")
-    }, success: function convertToCode(response){
-        console.log(response);
-        //process the JSON data etc
-    cityCode(response);
-    console.log(city);
-    
-    },
-    
-    async: false
-
-    })
-    
-    return city;
+function getCityKey(searchLocality) {
+    let City = 1359; // Timbuktu
+    let Url = sigicURLBase +
+        $.param({
+            query: searchLocality,
+            levels: 'city'
+        });
+    let request = new XMLHttpRequest();
+    request.open('GET', Url, false); // `false` makes the request synchronous
+    request.setRequestHeader("x-api-key", sigicApiKey);
+    request.send(null);
+    if (request.status === 200) {
+//      console.log(JSON.parse(request.responseText).data.places[0]);
+        City = JSON.parse(request.responseText).data.places[0].id.split(":")[1];
+    }
+    return City;
 }
 
 
