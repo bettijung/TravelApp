@@ -133,10 +133,25 @@ $(document).ready(function(){
 
 });
 
+// $("#googSubmit").on("click", function() {
+
+// email = $("#email").val().trim()
+// password = $("#password").val().trim()
+
+// firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+//   // Handle Errors here.
+//   var errorCode = error.code;
+//   var errorMessage = error.message;
+//   // ...
+// });
+
+// })
+
+
 $(".googSubmit").on("click", function() {
 
-    let email = $("#email").val().trim();
-    let password = $("#password").val().trim();
+    email = $("#email").val().trim();
+    password = $("#password").val().trim();
 
     $("#email").val("");
     $("#password").val("");
@@ -149,62 +164,64 @@ $(".googSubmit").on("click", function() {
 
         firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+            var errorCode = error.code;
+            var errorMessage = error.message;
 
-            firebase.auth().onAuthStateChanged(function(user) {
+        });
 
-        if (user) {
-            var user = firebase.auth().currentUser;
-            var email, uid;
-            // emailVerified
 
-            if (user != null) {
-                // name = user.displayName;
-                email = user.email;
-                // emailVerified = user.emailVerified;
-                uid = user.uid;   
+        firebase.auth().onAuthStateChanged(function(user) {
 
-                $(".save-button").on("click", function () {
+            if (user) {
+                var user = firebase.auth().currentUser;
+                var email, uid;
+                // emailVerified
 
-                    event.preventDefault();
+                if (user != null) {
+                    // name = user.displayName;
+                    email = user.email;
+                    // emailVerified = user.emailVerified;
+                    uid = user.uid;   
 
-                    console.log(savedCity);
-                    
-                    const newSave = {
-                        name: savedCity
+                    $(".save-button").on("click", function () {
+
+                        event.preventDefault();
+
+                        console.log(savedCity);
+                        
+                        const newSave = {
+                            name: savedCity
+                        }
+
+                        dbRef.push(newSave);
+
+                    });
+
+                    dbRef.on("child_added", function(childSnapshot, prevChildKey) {
+
+                        const newSave = childSnapshot.val();
+
+                        $(".saved-searches").append(createButtons(newSave));
+                    }, 
+
+                    function(errorObject) {
+                        console.log("Errors handled; " + errorObject.code);
+                    });
+
+                    function createButtons(cities) {
+                        const savedButtons = $(".saved-searches");
+                        const savedCityBtn = $("<a>" + cities.name + "</a>");
+                        savedCityBtn.addClass("btn waves-effect waves-light saved-city-btn");
+                        savedButtons.append(savedCityBtn);
                     }
-
-                    dbRef.push(newSave);
-
-                });
-
-                dbRef.on("child_added", function(childSnapshot, prevChildKey) {
-
-                    const newSave = childSnapshot.val();
-
-                    $(".saved-searches").append(createButtons(newSave));
-                }, 
-
-                function(errorObject) {
-                    console.log("Errors handled; " + errorObject.code);
-                });
-
-                function createButtons(cities) {
-                    const savedButtons = $(".saved-searches");
-                    const savedCityBtn = $("<a>" + cities.name + "</a>");
-                    savedCityBtn.addClass("btn waves-effect waves-light saved-city-btn");
-                    savedButtons.append(savedCityBtn);
                 }
-            }
 
-            else {
-            // $('#modal2').modal();
-            console.log("No user is signed in.");
-            }
-    
-        }    
-    });
+                else {
+                // $('#modal2').modal();
+                console.log("No user is signed in.");
+                }
+        
+            }    
         });
 
     }
@@ -333,7 +350,7 @@ function getActivity () {
                 
                 console.log(pois[i].thumbnail_url);
                 console.log(pois[i].name);
-
+// TOBY IF YOU CHANGE THIS, KEEP THESE NEXT TWO LINES I NEED THEM FOR FIREBASE!
                 savedCity = pois[i].name_suffix;
                 console.log(savedCity);
 
