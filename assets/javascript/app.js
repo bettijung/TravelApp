@@ -268,12 +268,17 @@ function getActivity () {
 
                 console.log(pois[i].thumbnail_url);
 
-                poiRating = pois[i].rating
-                ratingRadius = poisRating * 30
+                /*let poisRating = pois[i].rating
+                console.log(poisRating)
+                let ratingRadius = poisRating * 10*/
                 
-                
-
-                let svgNS = "http://www.w3.org/2000/svg";  
+               /* <svg id="mySVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+                let svgCont = $("<svg>")
+                svgCont.attr({
+                                target:"nw", 
+                                title:"Opens in a new window"
+                            });*/
+               /* let svgNS = "http://www.w3.org/2000/svg";  
                 let myCircle
                         function createCircle()
                         {
@@ -285,7 +290,7 @@ function getActivity () {
                             myCircle.setAttributeNS(null,"fill","black");
                             myCircle.setAttributeNS(null,"stroke","none");
 
-                        }   
+                        }   */
                 
 
 
@@ -293,7 +298,7 @@ function getActivity () {
 
                 popupPic = pois[i].thumbnail_url;
 
-                popupContent = "<p class=center>" + pois[i].name + "</p>" + "<img alt='' width=100px src=" + popupPic + "rating" + myCircle + ">";
+                popupContent = "<p class=center>" + pois[i].name + "</p>" + "<img alt='' width=100px src=" + popupPic + /*"rating" + myCircle + */">";
 
                 popupCity = pois[i].name_suffix;
 
