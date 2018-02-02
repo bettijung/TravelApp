@@ -152,14 +152,7 @@ $(".googSubmit").on("click", function() {
         var errorCode = error.code;
         var errorMessage = error.message;
 
-        });
-    }
-
-    else {
-        console.log("Email or password not entered.");
-    }
-
-    firebase.auth().onAuthStateChanged(function(user) {
+            firebase.auth().onAuthStateChanged(function(user) {
 
         if (user) {
             var user = firebase.auth().currentUser;
@@ -199,9 +192,9 @@ $(".googSubmit").on("click", function() {
 
                 function createButtons(cities) {
                     const savedButtons = $(".saved-searches");
-                    savedButtons.append("<btn>" + cities.name + "</btn>");
-                    $(this).addClass("waves-effect waves-light saved-city-btn");
-                    return savedButtons;
+                    const savedCityBtn = $("<a>" + cities.name + "</a>");
+                    savedCityBtn.addClass("btn waves-effect waves-light saved-city-btn");
+                    savedButtons.append(savedCityBtn);
                 }
             }
 
@@ -212,6 +205,14 @@ $(".googSubmit").on("click", function() {
     
         }    
     });
+        });
+
+    }
+
+    else {
+        console.log("Email or password not entered.");
+    }
+
 });
 
 
@@ -377,7 +378,7 @@ function getActivity () {
 
             $.ajax({
             type: "GET",
-            url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&redirects&prop=text&section=0&page="+ cityName +"&callback=?",
+            url: "https://en.wikipedia.org/w/api.php?action=parse&format=json&redirects&prop=text&section=0&page="+ cityName +"&callback=?",
             contentType: "application/json; charset=utf-8",
             async: false,
             dataType: "json",
@@ -507,7 +508,9 @@ $(document).on("click", ".activity-btn", getActivity);
 
 $(document).on("click", "#cityButton", citySearchInput);
 
-// $(document).on("click", "#cityButton", citySearchInput);
+$(document).on("click", ".saved-city-btn", function () {
+    console.log($(this).val());
+});
 
 
 
