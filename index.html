@@ -6,7 +6,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title>Travel App</title>
-	
+<!-- Favicon -->
+	<link rel="shortcut icon" type="image/icon" href="assets/images/favicon.ico">
+
 	<!-- Style Links -->
 		<!-- Google Maps -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -57,7 +59,7 @@
     </div>
   	</div>
 
-  	<div class="modal" id="modal2">
+  	<!-- <div class="modal" id="modal2">
 	    <div class="modal-content">
 	      	<div class="row">
 		        <div class="col s12">
@@ -68,7 +70,7 @@
 	    <div class="modal-footer">
 	      	<a class="please-login modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
 	    </div>
-  	</div>
+  	</div> -->
 	
 	<!-- Nav Bar -->
 	<div class="navbar-fixed">
@@ -165,12 +167,15 @@
 	</div>
 
 
+	<div class="scroll-to"></div>
+
+
 	<!-- Image on Page -->
 	<div class="parallax-container valign-wrapper">
 	    <div class="section no-pad-bot">
 	      	<div class="container">
 	        	<div class="row center">
-	          		<h5 class="header col s12 light image-text" id="quotes"></h5>
+	          		<h5 class="header col s12 light image-text" id="quotes">Scroll down to see your results:</h5>
 	        	</div>
 	      	</div>
 	    </div>
@@ -186,6 +191,9 @@
 
 			<div class="row center" id="wiki-header">
 				<h4>More Info About The City</h4>
+				<div class="saved-searches">
+					<a class="btn waves-effect waves-light red save" id="saveSearch">Save this Search</i></a>
+				</div>
 			</div>
 		    <div class="row center">
 		    	<div class="col s12 m6 l4 city-info">
@@ -249,6 +257,9 @@
   	<script src='https://api.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
 	<!-- Materialize  -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<!-- Quotes JS -->
+	<script type="text/javascript" src="assets/javascript/quotes.js"></script>
+
 	<!-- App JS file -->
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 
