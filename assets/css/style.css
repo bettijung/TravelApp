@@ -65,14 +65,14 @@ nav {
 /*========================================*/
 .body-wrapper {
   z-index: 5;
-  padding-top: 50px;
+  padding-top: 20px;
   overflow: auto;
 }
 
 /*Title and Image Container =============*/
 /*========================================*/
-.parallax-container {
-  min-height: 450px;
+.parallax-container.cont1 {
+  min-height: 250px;
   line-height: 0;
   height: auto;
   width: 100%;
@@ -80,6 +80,10 @@ nav {
   .parallax-container .section {
     width: 100%;
   }
+    .parallax-container.cont1 .header.page-title {
+      text-shadow: 2px 2px 2px #303030;
+      font-size: 75px;
+    }
   .parallax-container .parallax {
     position: absolute;
     top: 0;
@@ -99,15 +103,19 @@ nav {
   .parallax img {
     width: 100%;
   }
-
-.no-pad-bot h1 {
-  font-size: 65px;
-}
-
-.no-pad-bot .container .header {
-  margin-top: 0px;
-  text-shadow: 2px 2px 3px #303030;
-}
+  .no-pad-bot h1 {
+    font-size: 65px;
+  }
+  .no-pad-bot .container .header {
+    margin-top: 0px;
+    text-shadow: 2px 2px 2px #E8E8E8;
+    font-weight: 400;
+  }
+  .no-pad-bot .container .header.image-text {
+    margin-top: 0px;
+    font-size: 25px;
+    text-shadow: 2px 2px 2px #FFFFFF;
+  }
 
   /*Background Image ====================*/
   /*=====================================*/
@@ -135,44 +143,48 @@ nav {
       opacity: 0.9;
     }
 
-  /*City Search Box ======================*/
-  /*=====================================*/
-  .row .col.card.city-card {
-    opacity: 0.9;
-
-  }
-    .card .card-content.box4 {
-      padding: 15px;
-      padding-bottom: 0px;
-      padding-top: 10px;
-    }
-    .card .card-action.box5 {
-      padding: 5px;
-    }
-      .col.box9 {
-        align-content: center;
-      }    
-        .row.box7 {
-          margin-bottom: 10px;
-        }
-          .input-field.box8 {
-            margin-top: 0px;
-          }
-
 
 /*Activity Container =====================*/
 /*========================================*/
 .activity-container { 
 }
-  .row .col.s12.box3 {
+  .section.section1 {
+    padding-bottom: 0px;
+  }
+    .row .col.s12.box3 {
+      padding: 0px;
+    }
+      .activity-card {
+        opacity: 0.9;
+      }
+        .card-content.box6 {
+          padding-top: 10px;
+        }
+
+
+/*City Search Box ======================*/
+/*=====================================*/
+.row .col.card.city-card {
+  opacity: 0.9;
+}
+  .card .card-content.box4 {
+    padding: 15px;
+    padding-bottom: 0px;
+    padding-top: 10px;
+  }
+  .card .card-action.box5 {
     padding: 0px;
   }
-    .activity-card {
-      opacity: 0.9;
-    }
-      .card-content.box6 {
-        padding-top: 10px;
+    .col.box9 {
+      align-content: center;
+    }    
+      .row.box7 {
+        margin-bottom: 10px;
       }
+        .input-field.box8 {
+          margin-top: 0px;
+        }
+
 
 /*Map and City Info Section ==============*/
 /*========================================*/
