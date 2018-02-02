@@ -93,7 +93,8 @@ firebase.initializeApp(config);
 let dbRef = firebase.database().ref('TravelerInputs/users');
 
 // =========================================================
-let actMap 
+let actMap;
+
 const sigicURLBase = "https://api.sygictravelapi.com/1.0/en/places/list?"
 var city = null;
 var gate = 0;
@@ -107,47 +108,60 @@ $(document).ready(function(){
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('#modal1').modal();
     $("#map-card").hide();
+    $(".save").hide();
+    $("#quotes").hide();
+    resetQuote();
+
+    // console.log(quotesArray);
 
 //Change the navbar color on scrolling
-  $(window).scroll(function() { 
-    if ($(document).scrollTop() > 50) {
-      $("nav").css({
-        background: "white",
-        opacity: 0.90,
+    $(window).scroll(function() { 
+        if ($(document).scrollTop() > 50) {
+            $("nav").css({
+            background: "white",
+            opacity: 0.90,
+          });
+        }
+
+        else {
+          $("nav").css("background-color", "transparent");
+        }
       });
-    } 
-    else {
-      $("nav").css("background-color", "transparent");
-    }
-  });
 
 });
-
-
 
 $(".googSubmit").on("click", function() {
 
     let email = $("#email").val().trim();
     let password = $("#password").val().trim();
 
-    $("#log-in").html("Switch User");
-
     $("#email").val("");
     $("#password").val("");
 
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
+    if (email !="" && password !="") {
 
-    });
+        $("#log-in").html("Switch User");
+
+        $(".save").show();
+
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        });
+    }
+
+    else {
+        console.log("Email or password not entered.");
+    }
 
     firebase.auth().onAuthStateChanged(function(user) {
 
       if (user) {
 
         var user = firebase.auth().currentUser;
-        var name, email, uid;
+        var email, uid;
         // emailVerified
 
             if (user != null) {
@@ -161,17 +175,18 @@ $(".googSubmit").on("click", function() {
         
         dbRef.push(uid);
 
-        console.log(dbRef);
+        // console.log(dbRef);
 
-        $(document).on("click", "#cityButton", citySearchInput)
+        $(".save").on("click", function () {
+
+            saveSearch();
+
+        });
 
       }
 
       else {
-
-
-        $('#modal2').modal();
-
+        // $('#modal2').modal();
         console.log("No user is signed in.");
       }
     
@@ -181,12 +196,20 @@ $(".googSubmit").on("click", function() {
 
 function startSearch () {
     $('html, body').animate({
-        scrollTop: $(".city-card").offset().top
+        scrollTop: $(".activity-container").offset().top
     }, 1000);
 }
 
 
 function getActivity () {
+
+    resetQuote();
+    quote = getQuote();
+    console.log(quote);
+    $("#quotes").val("");
+    $("#quotes").prepend(quote);
+    $("#quotes").show();
+
     $("#map-card").show()
 	event.preventDefault();
     console.log(gate);
@@ -233,7 +256,6 @@ function getActivity () {
             var pois = [];
 
             for (var i = 0; i < placesObj.length; i++) {
-                
                  pois[i] = placesObj[i];
             }
 
@@ -260,13 +282,9 @@ function getActivity () {
                 const activityIcon = L.icon({
                     iconUrl: "assets/images/marker.png",
                     iconSize: [38, 38],
-                    iconAnchor: [22, 38],
+                    iconAnchor: [19, 38],
                     popupAnchor: [-3, -76],
                 });
-
-                // pois[i].id = pois[i].name;
-
-                console.log(pois[i].thumbnail_url);
 
                 /*let poisRating = pois[i].rating
                 console.log(poisRating)
@@ -292,8 +310,17 @@ function getActivity () {
 
                         }   */
                 
+              console.log(pois[i].thumbnail_url);
 
+                let popupPic;
 
+                if (pois[i].thumbnail_url != null) {
+                    popupPic = pois[i].thumbnail_url;
+                }
+
+                else {
+                    popupPic = "assets/images/tourism.png";
+                }
 
 
                 popupPic = pois[i].thumbnail_url;
@@ -311,7 +338,9 @@ function getActivity () {
             // console.log(pois[0].id);
             // $(".leaflet-pane").removeControl(".leaflet-zoom-anim", "leaflet-touch-zoom");
 
-            $(".leaflet-popup-content").css("cursor", "pointer");    
+            $(".leaflet-popup-content").css("cursor", "pointer");
+
+            $(".leaflet-popup-content").addClass("center");
 
             $(".leaflet-popup-content").on("click", function () {
                 console.log($(this).text());
@@ -333,8 +362,6 @@ function getActivity () {
             dataType: "json",
                 success: function (data, textStatus, jqXHR) {
                     
-                    
-
                     var markup = data.parse.text["*"];
                     var blurb = $('<div></div>').html(markup);
          
@@ -360,8 +387,9 @@ function getActivity () {
             });
 
             $('html, body').animate({
-                scrollTop: $("#map-card").offset().top
+                scrollTop: $(".scroll-to").offset().top
             }, 1000);
+
         }
 
 
@@ -384,7 +412,9 @@ function getActivity () {
 function displayActivityMap () {
     
     if (actMap != undefined) {
-    actMap.remove();
+
+        actMap.remove();
+
     }
 
     actMap = L.map("map-id").setView([latitude, longitude], 13);
@@ -404,17 +434,16 @@ function displayActivityMap () {
 
 function citySearchInput() {
 
-    console.log(dbRef);
+    resetQuote();
     
     cityInput = $("#citySearch").val().trim();
     
     // converts the city input into a city code
     
-
     gate = 1;
 
     $('html, body').animate({
-        scrollTop: $("#map-card").offset().top
+        scrollTop: $(".scroll-to").offset().top
     }, 1000);
 
     getActivity();
@@ -441,6 +470,21 @@ function getCityKey(searchLocality) {
 
 function saveSearch () {
 
+    console.log(dbRef);
+
+}
+
+function getQuote () {
+
+    let rQ = Math.floor((Math.random() * quotesArray.length));
+    let quote = quotesArray[rQ];
+
+    console.log(quote);
+    return quote;
+}
+
+function resetQuote () {
+    $("#quotes").html("Scroll down to see your results:");
 }
 
 
@@ -450,7 +494,26 @@ $(document).on("click", "#start-search", startSearch);
 $(document).on("click", ".activity-btn", getActivity);
 
 
-$(document).on("click", "#cityButton", citySearchInput)
+$(document).on("click", "#cityButton", citySearchInput);
+
+
+
+
+// {
+//   "rules": {
+//     "users": {
+//       "$user_id": {
+//         ".read": "auth != null",
+//         ".write": "auth != null"
+//       }
+//     },
+//     "city": {
+//       ".read": "auth != null",
+//       ".write": "auth != null"
+//     }
+//   }
+// }
+
 
 
 
