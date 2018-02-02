@@ -59,6 +59,7 @@ nav {
   }
   .nav-bar-btn {
     font-size: 18px;
+    text-shadow: 1px 1px 2px #303030;
   }
 
 /*Body Wrapper ===========================*/
@@ -108,13 +109,13 @@ nav {
   }
   .no-pad-bot .container .header {
     margin-top: 0px;
-    text-shadow: 2px 2px 2px #E8E8E8;
+    text-shadow: 2px 2px 3px #E8E8E8;
     font-weight: 400;
   }
   .no-pad-bot .container .header.image-text {
     margin-top: 0px;
     font-size: 25px;
-    text-shadow: 2px 2px 2px #FFFFFF;
+    text-shadow: 2px 2px 3px #FFFFFF;
   }
 
   /*Background Image ====================*/
