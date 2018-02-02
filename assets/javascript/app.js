@@ -93,11 +93,13 @@ firebase.initializeApp(config);
 let dbRef = firebase.database().ref('TravelerInputs/users');
 
 // =========================================================
-
-
+let actMap 
+const sigicURLBase = "https://api.sygictravelapi.com/1.0/en/places/list?"
 var city = null;
 var gate = 0;
 
+let cityInput = null
+const sigicApiKey = "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq"
 
 $(document).ready(function(){
     
@@ -141,7 +143,9 @@ $(".googSubmit").on("click", function() {
             }
 
         console.log(uid);
-        dbRef = dbRef + '/' + uid;
+        
+        dbRef.push(uid);
+
         console.log(dbRef);
 
         $(document).on("click", "#cityButton", citySearchInput)
@@ -171,10 +175,11 @@ function getActivity () {
     $("#map-card").show()
 	event.preventDefault();
     console.log(gate);
-
+    $("#map-id").empty();
+    $("#wiki-info").text();
 	if (gate === 1) {
-        city = cityKey();
-        console.log(cityKey());
+        city = getCityKey(cityInput);
+        console.log(getCityKey(cityInput));
         console.log(city);
         var activityVal = "eating";
 
@@ -196,7 +201,7 @@ function getActivity () {
 	$.ajax({
         url: 'https://api.sygictravelapi.com/1.0/en/places/list?parents=city:'+city+'&categories='+ activityVal +'&limit=20',
         beforeSend: function(xhr) {
-             xhr.setRequestHeader("x-api-key", "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq")
+             xhr.setRequestHeader("x-api-key", sigicApiKey)
         }, success: function(response){
             console.log(response);
             //process the JSON data etc
@@ -335,7 +340,11 @@ function getActivity () {
 
 function displayActivityMap () {
     
-    let actMap = L.map("map-id").setView([latitude, longitude], 13);
+    if (actMap != undefined) {
+    actMap.remove();
+    }
+
+    actMap = L.map("map-id").setView([latitude, longitude], 13);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicGF1bGFwZXJvdXRrYSIsImEiOiJjamN4bDg1b3MxMmNrMnlvNXI4ZjVtZ2gyIn0.8-6Dt5FcrIKpSddbhgUPOQ', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -357,7 +366,7 @@ function citySearchInput() {
     cityInput = $("#citySearch").val().trim();
     
     // converts the city input into a city code
-    cityKey();
+    
 
     gate = 1;
 
@@ -369,35 +378,22 @@ function citySearchInput() {
 
 }
 
-function cityCode(a) {
-
-    city = a.data.places["0"].id;
-    city = city.split(":");
-    city = city[1];
-    console.log(city);
-
-    return city;
-            
-}
-
-function cityKey() {
-    $.ajax({
-    url: 'https://api.sygictravelapi.com/1.0/en/places/list?query='+ cityInput,
-    beforeSend: function(xhr) {
-         xhr.setRequestHeader("x-api-key", "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq")
-    }, success: function convertToCode(response){
-        console.log(response);
-        //process the JSON data etc
-    cityCode(response);
-    console.log(city);
-    
-    },
-    
-    async: false
-
-    })
-    
-    return city;
+function getCityKey(searchLocality) {
+    let City = 1359; // Timbuktu
+    let Url = sigicURLBase +
+        $.param({
+            query: searchLocality,
+            levels: 'city'
+        });
+    let request = new XMLHttpRequest();
+    request.open('GET', Url, false); // `false` makes the request synchronous
+    request.setRequestHeader("x-api-key", sigicApiKey);
+    request.send(null);
+    if (request.status === 200) {
+//      console.log(JSON.parse(request.responseText).data.places[0]);
+        City = JSON.parse(request.responseText).data.places[0].id.split(":")[1];
+    }
+    return City;
 }
 
 
