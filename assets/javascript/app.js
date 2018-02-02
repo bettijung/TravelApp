@@ -142,7 +142,9 @@ $(".googSubmit").on("click", function() {
             }
 
         console.log(uid);
-        dbRef = dbRef + '/' + uid;
+        
+        dbRef.push(uid);
+
         console.log(dbRef);
 
         $(document).on("click", "#cityButton", citySearchInput)
