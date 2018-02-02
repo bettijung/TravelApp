@@ -197,22 +197,17 @@ nav {
   background-color: #E8E8E8;
   opacity: 0.9;
   border-style: solid;
-  border-color: black;
+  border-color: slategray;
   border-width: 2.2px;
 }
   #wiki-header {
     text-shadow: 2px 2px 3px grey;
     padding-top: 5px;
-    /*background-color: white;*/
   }
   .city-info {
     background-color: white;
     height: 724px;
     overflow-y: scroll;
-    border-style: solid;
-    border-color: gray;
-    border-width: 1px;
-    box-shadow: 2px 2px 2px gray;
   }
     #wiki-info {
       margin: 10px; 
@@ -221,10 +216,10 @@ nav {
     padding-right: 0px;
   }
     .map-header h4 {
-      font-size: 20px;
+      font-size: 15px;
       font-style: tahoma;
       margin-top: 0px;
-      margin-bottom: 0px;
+      margin-bottom: 5px;
       /*text-shadow: 1px 1px 2px grey;*/
       z-index: 10;
     }
