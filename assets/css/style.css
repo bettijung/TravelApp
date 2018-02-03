@@ -151,25 +151,28 @@ nav {
   }
     /*Quotes ============================*/
     /*===================================*/
-    .header.image-text#quotes {
-      background-color: #FFF5EE;
-      opacity: 0.70;
-      margin-top: 48px;
-      padding: 24px 14px;
-      border-radius: 3px;
-      font-family: 'Waiting for the Sunrise', cursive;
-      font-size: 30px;
+    .container#quote-scroll {
+      
     }
-    .header.image-text#scroll {
-      background-color: #FFF5EE;
-      opacity: 0.70;
-      margin-top: 48px;
-      padding: 15px 0px;
-      border-radius: 3px;
-      font-weight: 200;
-      font-family: "Roboto", sans serif;
-      font-size: 25px;
-    }
+      .header.image-text#quotes {
+        background-color: #FFF5EE;
+        opacity: 0.70;
+        margin-top: 48px;
+        padding: 24px 14px;
+        border-radius: 3px;
+        font-family: 'Waiting for the Sunrise', cursive;
+        font-size: 30px;
+      }
+      .header.image-text#scroll {
+        background-color: #FFF5EE;
+        opacity: 0.70;
+        margin-top: 48px;
+        padding: 15px 0px;
+        border-radius: 3px;
+        font-weight: 200;
+        font-family: "Roboto", sans serif;
+        font-size: 25px;
+      }
 
 /*Activity Container =====================*/
 /*========================================*/
