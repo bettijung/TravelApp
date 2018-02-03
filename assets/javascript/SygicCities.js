@@ -1,4 +1,4 @@
-const SigicCities = [
+const SygicCities = [
 ["1","London","UK"],
 ["2","Dublin","Ireland"],
 ["3","Reykjavik","Iceland"],
