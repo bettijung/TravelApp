@@ -244,16 +244,22 @@ nav {
       font-family: "Roboto", sans serif;
     }
   .map-buttons {
-
   }
+    #map-buttons .saved-searches .some-title {
+      font-size: 15px;
+      font-family: "Roboto", sans serif;
+      font-weight: 300;
+      margin-top: 0px;
+      margin-bottom: 5px;
+      /*text-shadow: 1px 1px 1px grey;*/
+    } 
     #map-buttons .map-act-btns .some-title {
       font-size: 15px;
       font-family: "Roboto", sans serif;
       font-weight: 300;
       margin-top: 0px;
       margin-bottom: 5px;
-      /*text-shadow: 1px 1px 2px grey;*/
-      z-index: 10;
+      /*text-shadow: 1px 1px 1px grey;*/
     }
   .city-info {
     background-color: white;
@@ -273,7 +279,6 @@ nav {
       margin-top: 0px;
       margin-bottom: 5px;
       /*text-shadow: 1px 1px 2px grey;*/
-      z-index: 10;
     }
     #map-id {
       height: 701px;
