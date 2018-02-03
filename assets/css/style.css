@@ -152,7 +152,7 @@ nav {
   }
     /*Quotes ============================*/
     /*===================================*/
-    .container#quote-scroll {
+    .container#quote-scroll{
     }
       .header.image-text#quotes {
         background-color: #FFF5EE;
@@ -234,16 +234,18 @@ nav {
 }
   #wiki-header {
     text-shadow: 2px 2px 3px grey;
-    padding-top: 5px;
-    margin-bottom: 15px;
+    padding-top: 10px;
+    margin-bottom: 10px;
   }
     #wiki-header h4 {
       margin-top: 2px;
-      margin-bottom: 2px;
+      margin-bottom: 5px;
       font-weight: 200;
       font-family: "Roboto", sans serif;
     }
-  .map-buttons {
+  .map-buttons .btn {
+    padding: 0 0.5rem;
+    margin: 0 0;
   }
     #map-buttons .saved-searches .some-title {
       font-size: 15px;
