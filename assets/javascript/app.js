@@ -268,7 +268,7 @@ function getActivity () {
         let randomCity = SigicCities[randomIndex][0];
         console.log(`randomCity: ${randomCity}`);
         city = randomCity
-
+    }
         
 
     
