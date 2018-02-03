@@ -1,78 +1,3 @@
-// var searchRadiusInMile = 20;
-// var searchLocality;
-// var searchBox;
-// var searchCoords;
-
-// const sigicApiKey = '3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq';
-// const sigicURLBase = 'https://api.sygictravelapi.com/1.0/en/places/';
-
-// const KMToDegreesAt0 = 0.008983152841195214;
-// const milePerKM = 0.62137;
-// const KMPerMile = 1.60934;
-
-// const degreePerKM   = 0.0090090090;
-// const degreePerMile = 0.0144927536;
-
-// //https://stackoverflow.com/questions/238260/how-to-calculate-the-bounding-box-for-a-given-lat-lng-location
-// function deg2rad(degrees) {
-//     return Math.PI * degrees / 180.0;
-// }
-
-// function rad2deg(radians) {
-//     return 180.0 * radians / Math.PI;
-// }
-
-// function createBbKM(coords, deltaKM) {
-//     var deltaLat = deltaKM * KMToDegreesAt0;
-//     var deltaLng = deltaLat / Math.cos(deg2rad(coords.lat));
-
-//     var A = [
-//         coords.lat - deltaLat, // south
-//         coords.lng - deltaLng, // west
-//         coords.lat + deltaLat, // north
-//         coords.lng + deltaLng  // east
-//     ];
-//     return A.join(',');
-// }
-
-// function createBbMile(coords, deltaMi) {
-//     return createBbKM(coords, deltaMi * KMPerMile);
-// }
-
-// function getCoordsFromTown(town) {
-//     const googleAPI =
-//         'https://maps.googleapis.com/maps/api/geocode/json?' +
-//         $.param({
-//             address: town,
-//             components: 'locality',
-//             key: 'AIzaSyBbdcRWUQOhcj0qb2eCc-bzNBuGOfN_32k'
-//         });
-
-//     let request = new XMLHttpRequest();
-//     request.open('GET', googleAPI, false); // `false` makes the request synchronous
-//     request.send(null);
-
-//     if (request.status === 200) {
-//         let Coords=JSON.parse(request.responseText).results[0].geometry.location;
-//         //let ret={lat: Coords.lat, lng: Coords.lng };
-//         return {lat: Coords.lat, lng: Coords.lng };
-//     }
-//     return null;
-// }
-
-// function callAjax(queryURL, apiKey, addToURL, apiParam, apiSuccess) {
-//     var queryURLComplete = queryURL + addToURL + '?' + $.param(apiParam);
-//     console.log(queryURLComplete);
-
-//     $.ajax({
-//         url: queryURLComplete,
-//         beforeSend: function(xhr) {
-//             xhr.setRequestHeader('x-api-key', apiKey);
-//         },
-//         success: apiSuccess
-//     });
-// }
-
 //["0"].thumbnail_url
 // --------------------------------------------------------
 // Begin App
@@ -90,20 +15,27 @@ var config = {
 
 firebase.initializeApp(config);
 
+// Create an array to save the saved city searches
 const newSave = {};
 
-let dbRef = firebase.database().ref('TravelerInputs/users/cities');
+//set Firebase reference path
+let dbRef = firebase.database().ref('TravelerInputs');
 
 // =========================================================
+//Activity map
 let actMap;
+//For firebase storage, capture saved city from different inputs
 let savedCity;
 
-const sigicURLBase = "https://api.sygictravelapi.com/1.0/en/places/list?"
+//API url for retrieve city with activities
+const sygicURLBase = "https://api.sygictravelapi.com/1.0/en/places/list?"
 var city = null;
 var gate = 0;
 
+//No city selected for call
 let cityInput = null
-const sigicApiKey = "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq"
+//API key for Sygic
+const sygicApiKey = "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq"
 
 $(document).ready(function(){
     
@@ -115,7 +47,6 @@ $(document).ready(function(){
     $("#quote-scroll").hide();
     resetQuote();
 
-    // console.log(quotesArray);
 
 //Change the navbar color on scrolling
     $(window).scroll(function() { 
@@ -132,20 +63,6 @@ $(document).ready(function(){
       });
 
 });
-
-// $("#googSubmit").on("click", function() {
-
-// email = $("#email").val().trim()
-// password = $("#password").val().trim()
-
-// firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-//   // Handle Errors here.
-//   var errorCode = error.code;
-//   var errorMessage = error.message;
-//   // ...
-// });
-
-// })
 
 
 $(".googSubmit").on("click", function() {
@@ -169,19 +86,18 @@ $(".googSubmit").on("click", function() {
 
         });
 
-
         firebase.auth().onAuthStateChanged(function(user) {
+//For use with mutliple user, user-specific saves
+            // if (user) {
+            //     var user = firebase.auth().currentUser;
+            //     var email, uid;
+            //     // emailVerified
 
-            if (user) {
-                var user = firebase.auth().currentUser;
-                var email, uid;
-                // emailVerified
-
-                if (user != null) {
-                    // name = user.displayName;
-                    email = user.email;
-                    // emailVerified = user.emailVerified;
-                    uid = user.uid;   
+            //     if (user != null) {
+            //         // name = user.displayName;
+            //         email = user.email;
+            //         // emailVerified = user.emailVerified;
+            //         uid = user.uid;   
 
                     $(".save-button").on("click", function () {
 
@@ -214,21 +130,20 @@ $(".googSubmit").on("click", function() {
                         savedCityBtn.addClass("btn waves-effect waves-light saved-city-btn");
                         savedButtons.append(savedCityBtn);
                     }
-                }
+//For use with multiple users, user-specific saves
+                // }
 
-                else {
-                // $('#modal2').modal();
-                console.log("No user is signed in.");
-                }
+    //             else {
+    //             // $('#modal2').modal();
+    //             console.log("No user is signed in.");
+    //             }
         
-            }    
+    //         }    
         });
-
     }
-
-    else {
-        console.log("Email or password not entered.");
-    }
+    // else {
+    //     console.log("Email or password not entered.");
+    // }
 
 });
 
@@ -263,9 +178,9 @@ function getActivity () {
     } else {
        
         var activityVal = $(this).attr("id").trim();
-        let randomIndex = Math.floor(Math.random() * SigicCities.length);
+        let randomIndex = Math.floor(Math.random() * SygicCities.length);
         console.log(`randomIndex: ${randomIndex}`);
-        let randomCity = SigicCities[randomIndex][0];
+        let randomCity = SygicCities[randomIndex][0];
         console.log(`randomCity: ${randomCity}`);
         city = randomCity
     }
@@ -278,7 +193,7 @@ function getActivity () {
 	$.ajax({
         url: 'https://api.sygictravelapi.com/1.0/en/places/list?parents=city:'+ city +'&categories='+ activityVal +'&limit=20',
         beforeSend: function(xhr) {
-             xhr.setRequestHeader("x-api-key", sigicApiKey)
+             xhr.setRequestHeader("x-api-key", sygicApiKey)
         }, success: function(response){
             console.log(response);
             //process the JSON data etc
@@ -489,14 +404,14 @@ function citySearchInput() {
 
 function getCityKey(searchLocality) {
     let City = 1359; // Timbuktu
-    let Url = sigicURLBase +
+    let Url = sygicURLBase +
         $.param({
             query: searchLocality,
             levels: 'city'
         });
     let request = new XMLHttpRequest();
     request.open('GET', Url, false); // `false` makes the request synchronous
-    request.setRequestHeader("x-api-key", sigicApiKey);
+    request.setRequestHeader("x-api-key", sygicApiKey);
     request.send(null);
     if (request.status === 200) {
 //      console.log(JSON.parse(request.responseText).data.places[0]);
@@ -545,6 +460,82 @@ $(document).on("click", ".saved-city-btn", function () {
 //       ".write": "auth != null"
 //     }
 //   }
+// }
+
+
+// var searchRadiusInMile = 20;
+// var searchLocality;
+// var searchBox;
+// var searchCoords;
+
+// const sygicApiKey = '3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq';
+// const sygicURLBase = 'https://api.sygictravelapi.com/1.0/en/places/';
+
+// const KMToDegreesAt0 = 0.008983152841195214;
+// const milePerKM = 0.62137;
+// const KMPerMile = 1.60934;
+
+// const degreePerKM   = 0.0090090090;
+// const degreePerMile = 0.0144927536;
+
+// //https://stackoverflow.com/questions/238260/how-to-calculate-the-bounding-box-for-a-given-lat-lng-location
+// function deg2rad(degrees) {
+//     return Math.PI * degrees / 180.0;
+// }
+
+// function rad2deg(radians) {
+//     return 180.0 * radians / Math.PI;
+// }
+
+// function createBbKM(coords, deltaKM) {
+//     var deltaLat = deltaKM * KMToDegreesAt0;
+//     var deltaLng = deltaLat / Math.cos(deg2rad(coords.lat));
+
+//     var A = [
+//         coords.lat - deltaLat, // south
+//         coords.lng - deltaLng, // west
+//         coords.lat + deltaLat, // north
+//         coords.lng + deltaLng  // east
+//     ];
+//     return A.join(',');
+// }
+
+// function createBbMile(coords, deltaMi) {
+//     return createBbKM(coords, deltaMi * KMPerMile);
+// }
+
+// function getCoordsFromTown(town) {
+//     const googleAPI =
+//         'https://maps.googleapis.com/maps/api/geocode/json?' +
+//         $.param({
+//             address: town,
+//             components: 'locality',
+//             key: 'AIzaSyBbdcRWUQOhcj0qb2eCc-bzNBuGOfN_32k'
+//         });
+
+//     let request = new XMLHttpRequest();
+//     request.open('GET', googleAPI, false); // `false` makes the request synchronous
+//     request.send(null);
+
+//     if (request.status === 200) {
+//         let Coords=JSON.parse(request.responseText).results[0].geometry.location;
+//         //let ret={lat: Coords.lat, lng: Coords.lng };
+//         return {lat: Coords.lat, lng: Coords.lng };
+//     }
+//     return null;
+// }
+
+// function callAjax(queryURL, apiKey, addToURL, apiParam, apiSuccess) {
+//     var queryURLComplete = queryURL + addToURL + '?' + $.param(apiParam);
+//     console.log(queryURLComplete);
+
+//     $.ajax({
+//         url: queryURLComplete,
+//         beforeSend: function(xhr) {
+//             xhr.setRequestHeader('x-api-key', apiKey);
+//         },
+//         success: apiSuccess
+//     });
 // }
 
 
