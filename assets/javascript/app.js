@@ -229,7 +229,18 @@ function getActivity () {
             /* const actCoord = response.data.places["0"].location;
             console.log(actCoord)*/
             // placeholder for one poi coords
+            if (pois.length === 0) {
+                var error = $("<div>")
+                error.attr("id", "errorID")
+                $("#errorID").text("")
+                error.text("No Activity of that type for this location")
+                $(".card-content").append(error)
+                return
+            }
+            
+            $("#errorID").text("")
             latitude = pois[0].location.lat;
+
             console.log(latitude);
 
             longitude = pois[0].location.lng;
