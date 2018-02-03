@@ -184,11 +184,16 @@ function getActivity () {
     } else {
        
         var activityVal = $(this).attr("id").trim();
+        activityVal = activityVal.split('-')
+        activityVal = activityVal[0]
+        console.log(activityVal)
+        if (actMap === undefined) {
         let randomIndex = Math.floor(Math.random() * SygicCities.length);
         console.log(`randomIndex: ${randomIndex}`);
         let randomCity = SygicCities[randomIndex][0];
         console.log(`randomCity: ${randomCity}`);
         city = randomCity
+        }
     }
 
 
@@ -376,7 +381,7 @@ function displayActivityMap () {
         actMap.remove();
     }
 
-    actMap = L.map("map-id").setView([latitude, longitude], 13);
+    actMap = L.map("map-id").setView([latitude, longitude], 15);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicGF1bGFwZXJvdXRrYSIsImEiOiJjamN4bDg1b3MxMmNrMnlvNXI4ZjVtZ2gyIn0.8-6Dt5FcrIKpSddbhgUPOQ', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
