@@ -122,13 +122,12 @@ $(".googSubmit").on("click", function() {
                         const newSave = childSnapshot.val();
 
                         $(".saved-searches").append(createButtons(newSave));
-                    // }, 
-                });
+                    }, 
 
 //Handle errors
-                    // function(errorObject) {
-                    //     console.log("Errors handled; " + errorObject.code);
-                    // });
+                    function(errorObject) {
+                        console.log("Errors handled; " + errorObject.code);
+                    });
 
                     function createButtons(cities) {
                         const savedButtons = $(".saved-searches");
@@ -172,11 +171,11 @@ function getActivity () {
     $("#quote-scroll").show();
 
     $("#map-card").show()
-	event.preventDefault();
+    event.preventDefault();
     console.log(gate);
     $("#map-id").empty();
     $("#wiki-info").text();
-	if (gate === 1) {
+    if (gate === 1) {
         city = getCityKey(cityInput);
         console.log(getCityKey(cityInput));
         console.log(city);
@@ -201,7 +200,7 @@ function getActivity () {
     $("#img2").attr("src", "assets/images/"+ activityVal +".jpeg");
     
 //Sygic API call for city data
-	$.ajax({
+    $.ajax({
         url: 'https://api.sygictravelapi.com/1.0/en/places/list?parents=city:'+ city +'&categories='+ activityVal +'&limit=20',
         beforeSend: function(xhr) {
              xhr.setRequestHeader("x-api-key", sygicApiKey)
@@ -230,7 +229,18 @@ function getActivity () {
             /* const actCoord = response.data.places["0"].location;
             console.log(actCoord)*/
             // placeholder for one poi coords
+            if (pois.length === 0) {
+                var error = $("<div>")
+                error.attr("id", "errorID")
+                $("#errorID").text("")
+                error.text("No Activity of that type for this location")
+                $(".card-content").append(error)
+                return
+            }
+            
+            $("#errorID").text("")
             latitude = pois[0].location.lat;
+
             console.log(latitude);
 
             longitude = pois[0].location.lng;
@@ -271,7 +281,6 @@ function getActivity () {
                             myCircle.setAttributeNS(null,"r",ratingRadius);
                             myCircle.setAttributeNS(null,"fill","black");
                             myCircle.setAttributeNS(null,"stroke","none");
-
                         }   */
                 
                 console.log(pois[i].thumbnail_url);
@@ -362,7 +371,7 @@ function getActivity () {
     });
 
     //Getting a (not-ordered) cities list
-	$.ajax({
+    $.ajax({
         url: 'https://api.sygictravelapi.com/1.0/en/places/list?level=city&limit=50',
         beforeSend: function(xhr) {
              xhr.setRequestHeader("x-api-key", "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq")
@@ -371,7 +380,7 @@ function getActivity () {
             //process the JSON data etc
         }
 
-	});
+    });
 
 }
 
