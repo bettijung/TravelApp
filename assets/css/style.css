@@ -157,16 +157,18 @@ nav {
       .header.image-text#quotes {
         background-color: #FFF5EE;
         opacity: 0.70;
-        margin-top: 48px;
-        padding: 24px 14px;
+        margin-top: 60px;
+        padding-bottom: 0px;
+        padding-top: 15px;
         border-radius: 3px;
         font-family: 'Waiting for the Sunrise', cursive;
         font-size: 30px;
+
       }
       .header.image-text#scroll {
         background-color: #FFF5EE;
         opacity: 0.70;
-        margin-top: 48px;
+        margin-top: 70px;
         padding: 15px 0px;
         border-radius: 3px;
         font-weight: 200;
