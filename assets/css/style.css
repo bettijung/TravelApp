@@ -153,7 +153,6 @@ nav {
     /*Quotes ============================*/
     /*===================================*/
     .container#quote-scroll {
-      
     }
       .header.image-text#quotes {
         background-color: #FFF5EE;
@@ -172,7 +171,7 @@ nav {
         margin-top: 70px;
         padding: 15px 0px;
         border-radius: 3px;
-        font-weight: 200;
+        font-weight: 300;
         font-family: "Roboto", sans serif;
         font-size: 25px;
       }
@@ -244,6 +243,18 @@ nav {
       font-weight: 200;
       font-family: "Roboto", sans serif;
     }
+  .map-buttons {
+
+  }
+    #map-buttons .map-act-btns .some-title {
+      font-size: 15px;
+      font-family: "Roboto", sans serif;
+      font-weight: 300;
+      margin-top: 0px;
+      margin-bottom: 5px;
+      /*text-shadow: 1px 1px 2px grey;*/
+      z-index: 10;
+    }
   .city-info {
     background-color: white;
     height: 724px;
@@ -255,9 +266,10 @@ nav {
   .col.map-header {
     padding-right: 0px;
   }
-    .map-header h4 {
+    .map-header .some-title {
       font-size: 15px;
-      font-style: tahoma;
+      font-family: "Roboto", sans serif;
+      font-weight: 300;
       margin-top: 0px;
       margin-bottom: 5px;
       /*text-shadow: 1px 1px 2px grey;*/
