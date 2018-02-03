@@ -355,7 +355,7 @@ function getActivity () {
 
     });
 
-    //Getting a (not ordered)cities list
+    //Getting a (not-ordered) cities list
 	$.ajax({
         url: 'https://api.sygictravelapi.com/1.0/en/places/list?level=city&limit=50',
         beforeSend: function(xhr) {
@@ -466,6 +466,7 @@ $(document).on("click", ".saved-city-btn", function () {
 
 });
 
+// ------------------------------------
 
 
 //Firebase rules for use with mutliple users, user-specific save
@@ -559,16 +560,3 @@ $(document).on("click", ".saved-city-btn", function () {
 //         success: apiSuccess
 //     });
 // }
-
-
-
-
-
-    
-
-
-
-
-
-
-
