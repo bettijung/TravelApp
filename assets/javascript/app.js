@@ -92,7 +92,7 @@ firebase.initializeApp(config);
 
 const newSave = {};
 
-let dbRef = firebase.database().ref('TravelerInputs/cities');
+let dbRef = firebase.database().ref('TravelerInputs/users/cities');
 
 // =========================================================
 let actMap;
