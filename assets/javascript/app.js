@@ -37,6 +37,7 @@ let cityInput = null
 //API key for Sygic
 const sygicApiKey = "3P9NEojUHh6edkJe8BCkP9Z8AAGbr9S57YAFEMqq"
 
+//First load
 $(document).ready(function(){
     
     //modal trigger
@@ -64,7 +65,7 @@ $(document).ready(function(){
 
 });
 
-
+//When user signs in, enable saves to firebase
 $(".googSubmit").on("click", function() {
 
     email = $("#email").val().trim();
@@ -79,13 +80,14 @@ $(".googSubmit").on("click", function() {
 
         $(".save-button").show();
 
+//Create user with email and password
         firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
 
         });
-
+//If a user is signed in, allow storage to firebase
         firebase.auth().onAuthStateChanged(function(user) {
 //For use with mutliple user, user-specific saves
             // if (user) {
@@ -99,6 +101,7 @@ $(".googSubmit").on("click", function() {
             //         // emailVerified = user.emailVerified;
             //         uid = user.uid;   
 
+//On save button click, push save to DB
                     $(".save-button").on("click", function () {
 
                         event.preventDefault();
@@ -113,6 +116,7 @@ $(".googSubmit").on("click", function() {
 
                     });
 
+//On child-added, take DB snapshot
                     dbRef.on("child_added", function(childSnapshot, prevChildKey) {
 
                         const newSave = childSnapshot.val();
@@ -120,6 +124,7 @@ $(".googSubmit").on("click", function() {
                         $(".saved-searches").append(createButtons(newSave));
                     }, 
 
+//Handle errors
                     function(errorObject) {
                         console.log("Errors handled; " + errorObject.code);
                     });
@@ -148,13 +153,14 @@ $(".googSubmit").on("click", function() {
 });
 
 
+//On start button, auto scroll function
 function startSearch () {
     $('html, body').animate({
-        scrollTop: $(".activity-container").offset().top
+        scrollTop: $("#start").offset().top
     }, 1000);
 }
 
-
+//Main app function, retrieves city data and populates info and map divs
 function getActivity () {
 
     resetQuote();
@@ -184,12 +190,11 @@ function getActivity () {
         console.log(`randomCity: ${randomCity}`);
         city = randomCity
     }
-        
 
-    
 
     $("#img2").attr("src", "assets/images/"+ activityVal +".jpeg");
     
+//Sygic API call for city data
 	$.ajax({
         url: 'https://api.sygictravelapi.com/1.0/en/places/list?parents=city:'+ city +'&categories='+ activityVal +'&limit=20',
         beforeSend: function(xhr) {
@@ -265,10 +270,12 @@ function getActivity () {
                 
                 console.log(pois[i].thumbnail_url);
                 console.log(pois[i].name);
-// TOBY IF YOU CHANGE THIS, KEEP THESE NEXT TWO LINES I NEED THEM FOR FIREBASE!
+
+// Saving city text for firebase storage
                 savedCity = pois[i].name_suffix;
                 console.log(savedCity);
 
+//popUps on map, add to markers on leaflet tile
                 let popupPic;
 
                 if (pois[i].thumbnail_url != null) {
@@ -302,7 +309,7 @@ function getActivity () {
             });
   
 
-        // wikipedia ajax call
+// wikipedia ajax call
         var cityName = pois["0"].name_suffix;
         cityName = cityName.split(", ");
         cityName = cityName[0];
@@ -362,6 +369,7 @@ function getActivity () {
 
 }
 
+//Use leaflet and mapbox to display a map using the lat/lon from the Sygic call
 function displayActivityMap () {
     
     if (actMap != undefined) {
@@ -383,6 +391,7 @@ function displayActivityMap () {
 
 }
 
+//Capture city name from user input in city search
 function citySearchInput() {
 
     resetQuote();
@@ -402,6 +411,7 @@ function citySearchInput() {
 
 }
 
+//Attach numeric city value to city for Sygic call
 function getCityKey(searchLocality) {
     let City = 1359; // Timbuktu
     let Url = sygicURLBase +
@@ -420,6 +430,7 @@ function getCityKey(searchLocality) {
     return City;
 }
 
+//Get a random quote from quotes.js file 
 function getQuote () {
 
     let rQ = Math.floor((Math.random() * quotesArray.length));
@@ -429,24 +440,35 @@ function getQuote () {
     return quote;
 }
 
+//Empty quote div for repopulation
 function resetQuote () {
     $("#quotes").html("");
 }
 
+//Auto scroll to first user input
+$(document).on("click", "#start", startSearch);
 
-$(document).on("click", "#start-search", startSearch);
-
+//API Calls, map population after user input
 $(document).on("click", ".activity-btn", getActivity);
 
+//Capture city if user input is through search instead of click
 $(document).on("click", "#cityButton", citySearchInput);
 
+//Repopulate search field and auto scroll if saved city button clicked
 $(document).on("click", ".saved-city-btn", function () {
-    console.log($(this).val());
+    console.log($(this).text());
+    let reSearch = $(this).text();
+    $("#citySearch").val(reSearch);
+
+    $('html, body').animate({
+        scrollTop: $(".card-content").offset().top
+    }, 1000);
+
 });
 
 
 
-
+//Firebase rules for use with mutliple users, user-specific save
 // {
 //   "rules": {
 //     "users": {
