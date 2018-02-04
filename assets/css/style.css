@@ -148,28 +148,30 @@ nav {
   /*=====================================*/
   .parallax-container.img-box1 {
     height: 450px;
+    margin-bottom: 20px;
   }
     /*Quotes ============================*/
     /*===================================*/
-    .container#quote-scroll {
-      
+    .container#quote-scroll{
     }
       .header.image-text#quotes {
         background-color: #FFF5EE;
         opacity: 0.70;
-        margin-top: 48px;
-        padding: 24px 14px;
+        margin-top: 60px;
+        padding-bottom: 0px;
+        padding-top: 15px;
         border-radius: 3px;
         font-family: 'Waiting for the Sunrise', cursive;
         font-size: 30px;
+
       }
       .header.image-text#scroll {
         background-color: #FFF5EE;
         opacity: 0.70;
-        margin-top: 48px;
+        margin-top: 70px;
         padding: 15px 0px;
         border-radius: 3px;
-        font-weight: 200;
+        font-weight: 300;
         font-family: "Roboto", sans serif;
         font-size: 25px;
       }
@@ -219,7 +221,7 @@ nav {
 /*Map and City Info Section ==============*/
 /*========================================*/
 #map-card {
-  height: 850px;
+  min-height: 850px;
   padding-top: 10;
   margin-top: 15px;
   margin-bottom: 5px;
@@ -232,14 +234,32 @@ nav {
 }
   #wiki-header {
     text-shadow: 2px 2px 3px grey;
-    padding-top: 5px;
-    margin-bottom: 15px;
+    padding-top: 10px;
+    margin-bottom: 10px;
   }
     #wiki-header h4 {
       margin-top: 2px;
-      margin-bottom: 2px;
+      margin-bottom: 5px;
       font-weight: 200;
       font-family: "Roboto", sans serif;
+    }
+  .map-buttons .btn {
+  }
+    #map-buttons .saved-searches .some-title {
+      font-size: 15px;
+      font-family: "Roboto", sans serif;
+      font-weight: 300;
+      margin-top: 0px;
+      margin-bottom: 5px;
+      /*text-shadow: 1px 1px 1px grey;*/
+    } 
+    #map-buttons .map-act-btns .some-title {
+      font-size: 15px;
+      font-family: "Roboto", sans serif;
+      font-weight: 300;
+      margin-top: 0px;
+      margin-bottom: 5px;
+      /*text-shadow: 1px 1px 1px grey;*/
     }
   .city-info {
     background-color: white;
@@ -252,16 +272,16 @@ nav {
   .col.map-header {
     padding-right: 0px;
   }
-    .map-header h4 {
+    .map-header .some-title {
       font-size: 15px;
-      font-style: tahoma;
+      font-family: "Roboto", sans serif;
+      font-weight: 300;
       margin-top: 0px;
       margin-bottom: 5px;
       /*text-shadow: 1px 1px 2px grey;*/
-      z-index: 10;
     }
     #map-id {
-      height: 701px;
+      height: 702px;
       padding-left: 0;
       padding-right: 0;
       margin-right: 0;
@@ -282,17 +302,29 @@ footer.page-footer {
   }
   footer h5 {
     margin-bottom: 0px;
+    font-family: "Roboto", sans serif;
+    font-weight: 300;
+    font-size: 25px;
   }
   footer.page-footer .footer-copyright {
     padding: 0px;
+    font-family: "Roboto", sans serif;
+    font-weight: 200;
   }
   footer p {
     margin: 2px;
+    margin-bottom: 5px;
+    font-family: "Roboto", sans serif;
+    font-weight: 200;
+    font-size: 15px;
   }
   .chip a {
     color: white;
+    font-family: "Roboto", sans serif;
+    font-weight: 200;
   }
     .chip a:hover {
+      font-family: "Roboto", sans serif;
       font-weight: bold;
       color: #00FFFF;
       padding: 5px;
